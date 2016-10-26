@@ -1,0 +1,63 @@
+body {
+	box-sizing: border-box;
+	/*color: #DBE6EC;*/
+	color: #484B53;
+	background-color: #DBE6EC;
+	background-image: url(bg-2.png);
+	background-repeat: repeat;	
+}
+
+#wrapper div.bordered.menu_block {
+	background-image: url(head.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 509px;
+}
+
+.postLinksBackg {
+	padding-bottom: 15px;
+	border-bottom: 1px dotted #484B53;
+}
+
+div#postsArea.bordered {
+	/*background-color: #484B53;*/
+	position: relative;
+	background-color: #E8F3F8;
+	box-sizing: border-box;
+/*	padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 15px;*/
+	padding: 15px;
+	border: 10px solid #484B53;
+	border-top: 20px solid #484B53;
+	/*border-radius: 25px;*/
+	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5),
+				0 6px 20px 0 rgba(0, 0, 0, 0.5),
+				0 6px 20px 0 rgba(0, 0, 0, 0) inset;
+}
+
+.header, h1, .postDate, .countSecond .postDate {
+	color: #81A8B8
+}
+
+.postTitle.header {
+	padding-top: 26px;
+}
+
+.countSecond .postDate, .countFirst .postDate {
+	position: absolute;
+	right: 0px;
+	margin-left:66%;
+	padding-right: 10px; 
+	width: 33%;
+	background-color: #484B53;
+	text-shadow: 0 0 3px #E8F3F8;
+}
+
+#side {
+	background-color: #fff;
+}
+
+#topNav a, #bottomNav a, a, .linkssection .postLinks a, #side h1 a, .header a {
+	color: #81A8B8;
+}

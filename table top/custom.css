@@ -1,0 +1,13 @@
+body {
+	box-sizing: border-box;
+	color: black;
+	background-color: #eee;
+}
+
+#side {
+	background-color: #fff;
+}
+
+a {
+	color: red;
+}
