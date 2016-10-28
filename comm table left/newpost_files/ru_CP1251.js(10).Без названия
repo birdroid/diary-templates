@@ -1,0 +1,7 @@
+// RU lang variables
+
+tinyMCE.addToLang('diarybtn', {
+	Jdesc : 'Вставить Off-topic (перед вставкой выделите текст)',
+	Ldesc : 'Вставить [L]',
+	Mdesc : 'Вставить [MORE]'
+});

@@ -1,0 +1,89 @@
+tinyMCE.importPluginLanguagePack('diarybtn');
+
+var TinyMCE_DiaryButtons = {
+	getInfo : function() {
+		return {
+			longname : 'Diary edit buttons',
+			author : 'Khrunin Denis Vladimirovich',
+			authorurl : 'http://m-master.diary.ru/',
+			version : "1.0"
+		};
+	},
+
+	setupContent : function(editor_id, body, doc) {
+		tinyMCE.importCSS(doc, this.baseURL+'/css/style.css');
+	},
+
+	getControlHTML : function(cn) {
+		switch (cn) {
+			case 'diarybtn_O':
+				return tinyMCE.getButtonHTML(cn, 'lang_diarybtn_Jdesc', '{$pluginurl}/images/a4.gif', 'mceDiaryButton_pasteO');
+		}
+
+		return '';
+	},
+
+	execCommand : function(editor_id, element, command, user_interface, value) {
+		var editor;
+		if (!(editor = tinyMCE.getInstanceById(editor_id))) return false;
+		var text = editor.selection.getSelectedText();
+		var html = editor.selection.getSelectedHTML();
+		var arr = new Array('_diarybtn_O');
+		switch (command) {
+			case "mceDiaryButton_pasteO":
+				if (!text) return true;
+					var obj = document.getElementById(editor_id+arr[0]);
+					if (!obj) return true;
+					if (tinyMCE.hasCSSClass(obj, 'mceButtonEnabled')) {
+					editor.execCommand('mceInsertContent', false, '<span class="offtop">'+text+'</span>&nbsp;');
+				} else if (	tinyMCE.hasCSSClass(obj, 'mceButtonSelected')) {
+					var elm = editor.selection.getFocusElement();
+					elm.outerHTML = elm.innerText;
+				}
+				return true;
+		}
+		return false;
+	},
+
+	handleNodeChange : function(editor_id, node, undo_index, undo_levels, visual_aid, any_selection) {
+		var arr = new Array('_diarybtn_O');
+		var span = tinyMCE.getParentElement(node, "span");
+		var classname = new RegExp('offtop', 'i');
+		if (span && classname.test(span.className)) {
+			var obj0 = document.getElementById(editor_id + arr[0]);
+			var obj1 = document.getElementById(editor_id + arr[1]);
+			if (span.className == 'offtop') {
+				if (obj0) {
+					tinyMCE.addCSSClass(obj0, 'mceButtonSelected');
+					tinyMCE.removeCSSClass(obj0, 'mceButtonDisabled');
+					tinyMCE.removeCSSClass(obj0, 'mceButtonEnabled');
+				}
+			} else {
+				if (obj0) {
+					tinyMCE.addCSSClass(obj0, 'mceButtonDisabled');
+					tinyMCE.removeCSSClass(obj0, 'mceButtonEnabled');
+					tinyMCE.removeCSSClass(obj0, 'mceButtonSelected');
+				}
+			}
+		} else if (any_selection) {
+			for (var i in arr) {
+				var obj = document.getElementById(editor_id + arr[i]);
+				if (!obj) continue;
+				tinyMCE.addCSSClass(obj, 'mceButtonEnabled');
+				tinyMCE.removeCSSClass(obj, 'mceButtonDisabled');
+				tinyMCE.removeCSSClass(obj, 'mceButtonSelected');
+			}
+		} else {
+			for (var i in arr) {
+				var obj = document.getElementById(editor_id + arr[i]);
+				if (!obj) continue;
+				tinyMCE.addCSSClass(obj, 'mceButtonDisabled');
+				tinyMCE.removeCSSClass(obj, 'mceButtonEnabled');
+				tinyMCE.removeCSSClass(obj, 'mceButtonSelected');
+			}
+		}
+		return;
+	}
+};
+
+tinyMCE.addPlugin("diarybtn", TinyMCE_DiaryButtons);

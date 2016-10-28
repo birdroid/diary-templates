@@ -1,0 +1,175 @@
+#side {  
+	font-size:92%;  
+}
+.bordered {  
+	border-style:solid;  
+	border-width:2px;  
+	padding:10px;  
+	margin-bottom:10px;  
+}
+
+.header {  
+	margin:0 0 10px;  
+	text-align:right;  
+	clear:both;  
+}
+.header.headerNew {  
+	margin:0 0 0px;  
+	text-align:right;  
+	clear:both;  
+}
+
+.singlePost .header,.header.left {  
+	text-align:left;  
+}
+.postDate {
+	float:right;
+}
+
+.singlePost, .menuSection  {  
+	border-style:solid;  
+	border-width:0 0 2px;  
+	padding-bottom:10px;   
+	margin-bottom:10px;  
+	height:auto !important;  
+	height:1em;  
+	clear:both;  
+}
+.sec{	
+	font-size: 100%;
+}
+.singlePost.firstPost{  
+	border-width: 2px 0 0 0;   
+	margin:7px 0 0 0;  
+	padding:10px 0 0 0;
+}
+.borderTop{   
+	border-style:solid; 
+	border-width: 2px 0 0 0;   
+	margin:0;  
+	padding:5px;  
+}
+.headlineTitle {  
+	font-weight:normal;  
+	}
+.postContent {  
+	clear:both;  
+	width:100%;  
+}
+.singleComment .postContent {  
+	padding-left:130px;  
+}
+.singleComment .postInner {  
+	margin-left:-130px;  
+	padding-left:130px; 
+}
+.postInner .bottom {  
+	height:10px;  
+	clear:both;  
+	overflow:hidden;  
+}
+.singlePost .paragraph {  
+	line-height:130%;  
+	text-align:justify;  
+	width:100%; 
+	padding-left:0px !important; 
+}
+.singlePost#epigraph {  
+	width:100%;  
+	clear:both;  
+	height:auto !important;  
+	height:1em;  
+	line-height:130%;  
+}
+
+#sortOrder {  
+	margin:0;  
+}
+
+
+.commentAuthor .avatarNew {  
+	margin:5px 0 10px;  
+	width:120px;  
+	max-width: 120px;  
+}
+.authorName { 
+	float: left; 
+	margin-bottom: 10px; 
+}
+
+.singleComment .paragraph {  
+	float:right;  
+	width:100%; 
+	display: inline; 
+	margin-left: 0px !important; 
+	margin-left: 130px; 
+}
+.singleComment .postContent {  
+	width:auto;  
+}
+.pageBar {  
+	text-align:center;  
+}
+
+.headList .postLinks {  
+	padding-bottom:10px;  
+}
+.header.in-list {  
+	font-weight:normal;  
+}
+
+h1 {  
+	font-size:100%;  
+	font-weight:normal;  
+	margin:0 0 10px;  
+}
+
+input.text,select {  
+	font-size:13px;  
+	font-family:"Verdana",monospace;  
+	padding: 0 0 1px 0;	
+	margin: 2px 0 0 0;  
+	background-color: #fff; 
+	color: #333; 
+}
+*html	input,input.text,select {  
+	margin: 1px 0 0 0;
+}
+
+textarea {  
+	background-color: #fff; 
+}
+
+table td.sms {	
+	padding: 5px; 
+	border: solid 1px #000;
+}
+
+#newPostForm table,#newPostForm td {
+	border-collapse:collapse;  
+	padding:0;  
+}
+#newPostForm p {  
+	margin:5px 0;  
+}
+
+
+.calnd .withfloat:hover .flwin {  
+	bottom:0;  
+	top:120%;  
+	left:-25px;  
+}
+.calnd .withfloat:hover .flwin.right {  
+	left:-275px;  
+}
+
+.formTags .favTagsContent { 
+	width:100%; 
+}
+
+.menu_block {
+	text-align: center;
+}
+.menu_block iframe{
+	margin: auto;
+}

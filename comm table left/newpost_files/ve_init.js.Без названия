@@ -1,0 +1,140 @@
+if (tinyMCE != null)
+{
+	tinyMCE.init({
+		doctype : '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">',
+		convert_fonts_to_spans : true,
+		mode : "exact",
+		elements : "message_2",
+		apply_source_formatting : false,
+		convert_newlines_to_brs : true,
+		force_br_newlines : true,
+		force_p_newlines : false,
+		verify_html : false,
+		inline_styles : true,
+		fix_list_elements : true,
+		language : "ru_CP1251",
+		plugins : "paste,diarynick,michelin,bbcode,media,smile,smallimage,fullscreen,advlink,diarybtn,ctrenter",
+		content_css : "http://static.diary.ru/style/block_layout.css,?css,/style/ve_form2.css",
+		entity_encoding : "raw",
+		add_unload_trigger : false,
+		remove_linebreaks : false,
+		theme: "advanced",
+		nonbreaking_force_tab : false,
+		convert_urls : false,
+		relative_urls : false,
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_layout_manager : "SimpleLayout",
+		theme_advanced_buttons1 : "bold,italic,underline,strikethrough,separator,diarybtn_O,forecolor,separator,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,outdent,indent,separator,undo,redo,separator,link,image,media,separator,michelin,emotions,nick_insert_k,nick_insert,nick_insert_L,nick_insert_M,AdvImage",
+		theme_advanced_buttons2 : "fontselect,fontsizeselect,pastetext,pasteword",
+		theme_advanced_buttons3 : "",
+		theme_advanced_tollbar_lock: "false"
+	});
+}
+function beforeSubmit()
+{
+	if (document.getElementById('VISUALAREA').className == 'dispalynone') return true;
+
+	var content =  tinyMCE.getContent('mce_editor_0');
+//	content = content.replace(/\r|\n/ig, "");
+//	content = content.replace(/<br[^>]*>/ig, "\n");
+	content = content.replace(/&lt;/ig,"<");
+	content = content.replace(/&gt;/ig,">");
+
+	msg = document.getElementById('message')
+	msg.value = content;
+	msg.name = 'message';
+
+	msg2 = document.getElementById('message_2');
+	msg2.name = "";
+	
+	rb = document.getElementById("ReplaceBr");
+	if(rb !=null) rb.checked = false;
+		
+	return true;
+}	
+
+function Select(id)
+{
+	if (id == 1)
+	{
+		if (document.getElementById('VISUALAREA').className == 'dispalynone') return false;
+
+		var now = new Date();
+		fixDate(now);
+		now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+		deleteCookie('vkladka');
+		setCookie('vkladka', '1', now, "/", "diary.ru");//Устанавливаем cookie
+
+		document.getElementById('L_2').className = null;
+		document.getElementById('L_1').className = 'current';
+		document.getElementById('VISUALAREA').className = 'dispalynone';
+		document.getElementById('HTMLAREA').className = null;			
+
+		var content = tinyMCE.getContent('mce_editor_0');
+		content = content.replace(/\r|\n/ig, "");
+		content = content.replace(/<br[^>]*>/ig, "\n");
+		content = content.replace(/&lt;/ig,"<");
+		content = content.replace(/&gt;/ig,">");
+
+		msg = document.getElementById('message')
+		msg.value = content;
+		msg.name = 'message';
+		msg.focus();
+
+		msg2 = document.getElementById('message_2');
+		msg2.name = "";
+		
+		ShowDiv("ReplaceBrDiv");
+	}
+	else
+	{
+		if (document.getElementById('HTMLAREA').className == 'dispalynone') return false;				
+
+		var now = new Date();
+		fixDate(now);
+		now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+		deleteCookie('vkladka');
+		setCookie('vkladka', '2', now, '/', 'diary.ru');//Устанавливаем cookie
+
+		msg = document.getElementById('message');
+//		msg.focus();
+
+		document.getElementById('L_1').className = null;
+		document.getElementById('L_2').className = 'current';
+		document.getElementById('VISUALAREA').className = null;
+		document.getElementById('HTMLAREA').className = 'dispalynone';			
+			
+		var content = document.getElementById('message').value;
+		content = content.replace(/<table([^>]*)>\s*<tbody/ig, "<table$1> <tbody");
+		content = content.replace(/<tbody([^>]*)>\s*<tr/ig, " <tbody$1> <tr");
+		content = content.replace(/<tr([^>]*)>\s*<td/ig, " <tr$1><td");
+
+		content = content.replace(/<\/tr>\s*<tr/ig, "</tr> <tr");
+		content = content.replace(/<\/td>\s*<td/ig, "</td><td");
+		content = content.replace(/<\/td>\s*<\/tr>/ig, "</td></tr> ");
+		content = content.replace(/<\/tr>\s*<\/tbody>/ig, "</tr> </tbody>");
+		content = content.replace(/<\/tbody>\s*<\/table>/ig, " </tbody> </table>");
+		content = content.replace(/\r/ig, "");
+		content = content.replace(/\n/ig, "<br />\n");
+		
+		content = content.replace(/<object classid\s=\s\"[^\"]\"/ig, "<object");
+		content = content.replace(/<object /ig, '<object  classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"');		
+
+		var ms = content.split("<");
+		if(ms.length>1)for(i=0;i<ms.length;i++)if(i==0)content = ms[i]; else content += (allow_tags.replace(" " + ms[i].replace(/(^[\/]?)|(\W.*)/ig,"") + " ","") == allow_tags ? "&lt;":"<") + ms[i];
+		
+		msg2 = document.getElementById('message_2');
+		msg.name = "";
+		msg2.name = 'message';
+		
+		tinyMCE.setContent(content);
+
+		try{ mce_editor_0.document.getElementById('mceSpanFonts').style.display = "block"; }catch(e){}
+
+		HideDiv("ReplaceBrDiv");
+	}
+	return false;
+}
+/*document.write('<ul id="zakl"><li id="L_1" onClick="return Select(1);" class="current"><span><a href="#" style="width:35px;">HTML</a></span></li><li id="L_2" onClick="return Select(2);"><span><a href="#" style="width:135px;">Визуальный редактор</a></span></li></ul>');*/
+document.write('<ul id="vkl"><li id="L_1" onClick="return Select(1);" class="current" style="//width:45px;"><b class="z_top"><b class="z_v"></b><b class="z_n"></b></b><a href="#">HTML</a></li><li id="L_2" onClick="return Select(2);" style="//width:135px;"><b class="z_top"><b class="z_v"></b><b class="z_n"></b></b><a href="#">Визуальный редактор</a></li>' + (get('postsArea')!=null ? '<li style="float:right;"><input id="formaltstylechecker" type="checkbox" onclick="form_style_changer(this);"  class="inp_check" ' + formaltstylechecker_value + '/><label for=\'formaltstylechecker\'>прозрачные поля (HTML)</label></li>':'') + '</ul><div class="clear"></div>');

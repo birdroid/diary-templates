@@ -1,0 +1,140 @@
+body {font-family:trebuchet ms,geneva;  font-style: normal;font-weight: normal;  font-size:81%;  background-color:#d1cf6b; background-image:url("http://static.diary.ru/userdir/1/9/4/4/1944730/78124037.png"); background-repeat: repeat; background-position: 0 0;  color:#29463e; }
+textarea{font-family:trebuchet ms,geneva;  font-style: normal;font-weight: normal;  font-size:81%; color:#29463e; }
+
+#topNav, #bottomNav {background-color:#4fb09c;}
+#topNav a, #bottomNav a {color:#cc335e;}
+.block_design .bordered{background-color:#e0dbc1;  border-color:#4fb09c;}
+.header,h1{color:#cc335e; font-size:100%; font-style: italic;font-weight: bold;  background-color:#4fb09c;}
+.header h2{font-style: italic;font-weight: bold;};
+.singlePost .header, .linkssection .header{background-color:#e0dbc1;}
+.menuSection,#epigraph,.formcontainer,.pageBar, .postContent, .postLinksBackg, .postTitle, .authorName, .communityName, .order_button, .section, .list_box{background-color:#e0dbc1;}
+#side h1 a, .header a{color:#cc335e;}
+a, .linkssection .postLinks a{color:#cc335e;}
+.countSecond .postContent, .countSecond .postLinksBackg, .countSecond .postTitle, .countSecond .authorName, .countSecond .communityName, .singlePost.countSecond .header, .linkssection.countSecond .header{background-color:#F3EED4;}
+.postDate, .countSecond .postDate{color:#cc335e; font-size:100%; font-style: italic;font-weight: bold; background-color:#4fb09c;}
+
+.top .bordered{background-color:#e0dbc1;}
+.top .menuSection ul, .top #thisDiaryPhoto, .top #sign{background-color:#F3EED4; border:1px solid #4fb09c; }
+.top .menuSection_title{color: #cc335e;}
+
+.cbegun {color:#29463e;  font-weight:normal;  font-size:92%;}
+.cbegun:hover {text-decoration:underline;}
+.offtop {color:#a5b176;}
+#GroupOp {background-color:#4fb09c; color:#cc335e;}
+
+
+/*блочный*/
+.block_design .singlePost, .block_design .menuSection, .block_design .singleComment, .block_design .section, .block_design #epigraph, .block_design .pageBar, .block_design .group_link, .block_design .list_box{border-color: #4fb09c;}
+.block_design .countSecond .postContent, .block_design .countSecond .header, .block_design .countSecond .postLinksBackg, .block_design .countSecond .authorName,  .block_design .countSecond .communityName{background-color:#e0dbc1;}
+.block_design .header,.block_design h1, .block_design #topNav, .block_design .postTitle, .block_design .singlePost .header.postDate, .block_design .linkssection .header, .block_design .postDate{background-color:transparent;}
+.block_design #side h1 a{color: #cc335e;}
+.block_design #side h1{font-size: 92%; font-weight: normal;font-style: normal;}
+.top.block_design #side h1{font-size: 100%; border-bottom: 1px solid #4fb09c;}
+.top.block_design .menuSection{border-top: none;}
+.block_design #GroupOp {  background-color:transparent; border-top-color: #4fb09c;}
+
+.forCheck {  float:right;  }
+
+#favGroups a, #linksGroups a, #draft_list a{color: #cc335e; font-weight: normal;}
+.calnd th {  background-color:#F3EED4;  color:#29463e; font-style: italic;font-weight: bold;  text-align:center;  }
+.calnd tr.cal-head{border-bottom: 1px solid #4fb09c;}
+.calnd td.cal-mnth {  font-style: italic;font-weight: bold;  text-align:center;  color:#29463e;  }
+.advertising {  background-color:#e0dbc1;  }
+.sign{color:#29463e;}
+
+.in-list .postTitle, .in-list h2{    font-weight: normal;}
+.in-list .postTitle{color: #29463e;}
+.in-list .postTitle span{    font-size:85%;}
+.block_design .in-list .postLinksBackg, .block_design .in-list .postTitle{padding:0;}
+
+/*????*/
+#msg_form {padding:0;  margin:0; font-size: 100%;}
+
+
+
+.header.calHeader { text-align: left;}
+#content {margin-bottom:1px; background-color:#e0dbc1;}
+
+.pollLine { background-color:#29463e; height: 1px; padding:0px; }
+
+/*end ????*/
+
+.favTagsColor { color:#000; }
+
+.TagL {color:#29463e;}
+
+#my_tags{border-color:#4fb09c; background-color:#F3EED4;}
+
+/*всплывающее info*/
+#info_wind .flwin {color: #29463e; border-color: #4fb09c;}
+
+/*вкладки*/
+#vkl li a{color: #cc335e;}
+#vkl .z_top{background-color: #e0dbc1;}
+#vkl .current a, #vkl .current .z_n{background-color:#F3EED4;}
+#vkl li a, #vkl .z_n{background-color:#e0dbc1;}
+#vkl .z_v{background-color: #4fb09c;}
+#vkl .z_n, #vkl li a{border-style: solid; border-width: 0 1px 0 1px; border-color: #4fb09c;}
+#vkl li a{border-width: 0 1px 1px 1px;}
+
+/*кнопки*/
+.mceToolbarTop{background:#F3EED4 !important;}
+.mce{border: 1px solid #4fb09c!important; position: relative;}
+.mceToolbarTop{border-bottom:1px solid  #4fb09c !important;}
+.htmlbox{border-color:  #29463e; border: 1px solid #4fb09c; margin:0; padding: 0; position: relative;}
+#jsbut {font-size: 86%; background-color:#F3EED4!important; border-bottom:1px solid  #4fb09c!important;}
+#codebuttons a img, a.mceButtonNormal img, a.mceButtonSelected img, a.mceButtonDisabled img, #codebuttons span.buts{border: #4fb09c 1px solid!important;}
+*html a.mceButtonNormal, *html a.mceButtonSelected, *html a.mceButtonDisabled{
+border: #4fb09c 1px solid!important;}
+span.mceMenuButton img, span.mceMenuButtonSelected img{border: #4fb09c 1px solid;}
+span.mceMenuButton img.mceMenuButton, span.mceMenuButtonSelected img.mceMenuButton, span.mceMenuButton:hover img.mceMenuButton, span.mceMenuButtonSelected:hover img.mceMenuButton{border-left:none  !important;}
+
+/*прозрачность*/
+a.mceButtonNormal img, a.mceButtonSelected img, a.mceButtonDisabled img, span.mceMenuButton img, span.mceMenuButtonSelected img{opacity:0.7;}
+a.mceButtonDisabled img{opacity:0.5;}
+* html a.mceButtonNormal img, *html a.mceButtonSelected img, *html span.mceMenuButton img, *html  span.mceMenuButtonSelected img{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);}
+* html a.mceButtonDisabled img{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);}
+*:first-child+html a.mceButtonNormal img, a.mceButtonSelected img, span.mceMenuButton img, span.mceMenuButtonSelected img{
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);}
+*:first-child+html a.mceButtonDisabled img{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);}
+
+/*панель смайлов*/
+#shsmile{background-color:#F3EED4; border:1px solid  #4fb09c; margin:0; border-top:none; padding:3px;}
+.SmilePanelElement small { background: #F3EED4; border:1px solid #4fb09c; color:#29463e;}
+
+/*управл€ющие элементы*/
+
+.htmlbox textarea, input.text, #trspisok textarea, #close_text{background-color: #e0dbc1;  font-family:trebuchet ms,geneva;  font-style: normal;font-weight: normal;;  font-size:100%; color:#29463e;}
+input.text, select, #trspisok textarea, #description, #close_text, #side #search_selectbtid{border: 1px solid #4fb09c;}
+input.submit, .submit{border-color:  #29463e; border: 1px solid #4fb09c; background-color:#ffffff;opacity: 0.6; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60); color: #000000;}
+.submit{opacity: 0.8; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80);}
+ input.inp_check{opacity: 0.6; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);}
+
+/*кнопки редактировани€, иконки*/
+.postActionLinks, #sortOrder, .openidIco{opacity: 0.6;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);}
+
+
+/*суггестр*/
+#suggestform{border-color: #4fb09c;}
+
+/*белые пол€*/
+.form_alt_style input.text,
+#postsArea.form_alt_style input.text, 
+#addCommentArea.form_alt_style input.text,
+.form_alt_style #trspisok textarea,
+.form_alt_style #description, 
+.form_alt_style #close_text,
+.form_alt_style #yaquery{
+    background-color: #ffffff;
+    opacity: 0.7;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+    color: #000000;
+}
+.form_alt_style .htmlbox table{
+    background-color: #ffffff;
+    opacity: 0.7;
+}
+.form_alt_style .htmlbox textarea{
+    background-color: transparent;
+    color: #000000;    
+}

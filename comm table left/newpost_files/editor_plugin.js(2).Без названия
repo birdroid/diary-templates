@@ -1,0 +1,40 @@
+tinyMCE.importPluginLanguagePack('michelin');
+
+var TinyMCE_LongDashPlugin = {
+	getInfo : function() {
+		return {
+			longname : 'michelin',
+			author : 'uF',
+			authorurl : 'http://www.diary.ru/',
+			infourl : 'http://www.diary.ru/',
+			version : '1'
+		};
+	},
+
+	getControlHTML : function(cn) {
+		switch (cn) {
+			case "michelin":
+				// lang_им€подгружаемогозначени€_desc
+				//tinyMCE.getButtonHTML(cn, €зык, картинка кнопки, вызываема€ функци€, false);
+				return tinyMCE.getButtonHTML(cn, 'lang_michelin_desc', '{$pluginurl}/images/longdash.gif', 'mcemichelin', false);
+		}
+
+		return "";
+	},
+
+
+	execCommand : function(editor_id, element, command, user_interface, value) {
+		var inst = tinyMCE.getInstanceById(editor_id), h;
+
+		switch (command) {
+			case "mcemichelin":
+				h = (inst.visualChars && inst.visualChars.state) ? '<span class="mceItemHiddenVisualChar">&middot;</span>' : '&mdash;';
+				tinyMCE.execInstanceCommand(editor_id, 'mceInsertContent', false, h);
+				return true;
+		}
+
+		return false;
+	}
+};
+
+tinyMCE.addPlugin("michelin", TinyMCE_LongDashPlugin);

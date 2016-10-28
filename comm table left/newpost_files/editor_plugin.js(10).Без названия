@@ -1,0 +1,42 @@
+var TinyMCE_ctrenterPlugin = {
+     getInfo : function() {
+          return {
+               longname : 'ctrenter',
+               author : 'uF',
+               authorurl : 'http://www.diary.ru/',
+               infourl : 'http://www.diary.ru/',
+               version : '1'
+          };
+     },
+
+     
+     initInstance : function(inst) {
+          // You can take out plugin specific parameters
+
+          // Register custom keyboard shortcut
+          inst.addShortcut('ctrl', String.fromCharCode('13'), 'lang_somename_desc', 'mceEnter');
+          inst.addShortcut('ctrl', String.fromCharCode('115'), 'lang_somename_desc', 'mceCtrlS');
+     },
+
+     execCommand : function(editor_id, element, command, user_interface, value) {
+          var inst = tinyMCE.getInstanceById(editor_id), h;
+
+          switch (command) {
+               case "mceEnter":
+                    if(parent._checkVal()) parent.document.getElementById("msg_form").submit();
+                    return true;
+               case "mceCtrlS":
+			   		try
+					{
+						if (parent._checkVal()) parent.save("draft_save");
+					}
+					catch(err)
+					{}
+                    return true;
+          }
+
+          return false;
+     }
+};
+
+tinyMCE.addPlugin("ctrenter", TinyMCE_ctrenterPlugin);

@@ -1,0 +1,6 @@
+// RU lang variables
+
+tinyMCE.addToLang('michelin',{
+desc : 'Вставить длинное тире'
+});
+

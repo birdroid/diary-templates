@@ -1,0 +1,155 @@
+/**
+ * $Id: editor_plugin_src.js 201 2007-02-12 15:56:56Z spocke $
+ *
+ * @author Moxiecode
+ * @copyright Copyright © 2004-2007, Moxiecode Systems AB, All rights reserved.
+ */
+
+/* Import plugin specific language pack */
+tinyMCE.importPluginLanguagePack('diarynick');
+
+// Plucin static class
+var TinyMCE_EmotionsPlugin = {
+	getInfo : function() {
+		return {
+			longname : 'diarynick',
+			author : 'Maykl M.A',
+			authorurl : 'http://tinymce.moxiecode.com',
+			infourl : 'http://wiki.moxiecode.com/index.php/TinyMCE:Plugins/emotions',
+			version : tinyMCE.majorVersion + "." + tinyMCE.minorVersion
+		};
+	},
+
+	/**
+	 * Returns the HTML contents of the emotions control.
+	 */
+	getControlHTML : function(cn) {
+		switch (cn) {
+			case "nick_insert":
+				return tinyMCE.getButtonHTML(cn, 'lang_emotions_descJ', '{$pluginurl}/images/a1.gif', 'mceEmotion');
+			case "nick_insert_L":
+				return tinyMCE.getButtonHTML(cn, 'lang_emotions_descL', '{$pluginurl}/images/a2.gif', 'mceEmotionL');	
+			case "nick_insert_M":
+				return tinyMCE.getButtonHTML(cn, 'lang_emotions_descM', '{$pluginurl}/images/a3.gif', 'mceEmotionM');		
+			case "nick_insert_k":
+				return tinyMCE.getButtonHTML(cn, 'lang_emotions_descK', 'http://diary.ru/img/quot.gif', 'mceEmotionK');		
+		}
+		return "";
+	},
+
+	/**
+	 * Executes the mceEmotion command.
+	 */
+	
+	execCommand : function(editor_id, element, command, user_interface, value) {
+		// Handle commands
+		var editor;
+		if (!(editor = tinyMCE.getInstanceById(editor_id))) return false;
+		var text = editor.selection.getSelectedText();
+		var html = editor.selection.getSelectedHTML();
+		var focusElm = editor.getFocusElement();//Хранит ссылку на объект
+		
+		switch (command) {
+			case "mceEmotion":
+				if (focusElm != null && focusElm.nodeName.toLowerCase() == "span") {
+					var value = focusElm.innerHTML;//содержит значение тега
+				}else{
+					var value = text;
+				}
+				
+				var template = new Array();
+				
+				template['file'] = '../../plugins/diarynick/emotions.htm'; // Relative to theme
+				template['width'] = 250;
+				template['height'] = 160;
+
+				// Language specific width and height addons
+				template['width'] += tinyMCE.getLang('lang_emotions_delta_width', 0);
+				template['height'] += tinyMCE.getLang('lang_emotions_delta_height', 0);
+
+				tinyMCE.openWindow(template, {editor_id : editor_id, inline : "yes", name_value: value});
+
+				return true;
+			case "mceEmotionL":
+				if (focusElm != null && focusElm.nodeName.toLowerCase() == "span") {
+					var value = focusElm.innerHTML;//содержит значение тега
+				}else{
+					var value = text;
+				}
+				
+				var template = new Array();
+				
+				template['file'] = '../../plugins/diarynick/emotionsL.htm'; // Relative to theme
+				template['width'] = 250;
+				template['height'] = 160;
+
+				// Language specific width and height addons
+				template['width'] += tinyMCE.getLang('lang_emotions_delta_width', 0);
+				template['height'] += tinyMCE.getLang('lang_emotions_delta_height', 0);
+
+				tinyMCE.openWindow(template, {editor_id : editor_id, inline : "yes", name_value: value});
+
+				return true;
+			case "mceEmotionM":
+				var value = html;//Содержит значение выделенного тэга
+				editor.execCommand('mceInsertContent', false, '[MORE]'+value+'[/MORE]');
+
+				return true;
+			case "mceEmotionK":
+				var value = html;//Содержит значение выделенного тэга
+				editor.execCommand('mceInsertContent', false, '&laquo;'+value+'&raquo;');
+
+				return true;	
+		}
+
+		// Pass to next handler in chain
+		return false;
+	},
+	//Определяет принадлежит данный код ему или нет
+	handleNodeChange : function(editor_id, node, undo_index, undo_levels, visual_aid, any_selection) {
+		if (node == null)
+			return;
+		//======================================================================
+		do {
+			
+			if ( node.nodeName == "SPAN" && /TagJ/.test(tinyMCE.getAttrib(node, 'class')) ) {
+			
+				tinyMCE.switchClass(editor_id + '_nick_insert', 'mceButtonSelected');
+				var b1 = true;
+			}else if ( node.nodeName == "SPAN" && /TagL/.test(tinyMCE.getAttrib(node, 'class')) ) {
+			
+				tinyMCE.switchClass(editor_id + '_nick_insert_L', 'mceButtonSelected');
+				var b2 = true;
+			}
+			
+			if( b1 ){
+				tinyMCE.switchClass(editor_id + '_nick_insert_L', 'mceButtonNormal');
+				return true;
+			}
+			
+			if( b2 ){
+				tinyMCE.switchClass(editor_id + '_nick_insert', 'mceButtonNormal');
+				return true;
+			}
+		} while ((node = node.parentNode));
+
+		tinyMCE.switchClass(editor_id + '_nick_insert', 'mceButtonNormal');
+		tinyMCE.switchClass(editor_id + '_nick_insert_L', 'mceButtonNormal');
+
+		return true;
+	},
+	
+	cleanup : function(type, content, inst) {
+		//var reg1_1 = new RegExp('<span.+?class=["\']?tagj["\']?[^>]+>([^<]+)<\/span>', 'gi');
+		//var reg1_2 = new RegExp('<span.+?class=["\']?tagl["\']?[^>]+>([^<]+)<\/span>', 'gi');
+		//var reg2_1 = new RegExp('\\[j\\]([^\\[]+)\\[\\/j\\]', 'gi');
+		//var reg2_2 = new RegExp('\\[l\\]([^\\[]+)\\[\\/l\\]', 'gi');
+		if (type == 'insert_to_editor') {
+			//content = content.replace(reg2_1, '<span class="TagJ">$1</span>')
+		}
+		return content;
+	}
+};
+
+// Register plugin
+tinyMCE.addPlugin('diarynick', TinyMCE_EmotionsPlugin);

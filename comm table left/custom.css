@@ -7,6 +7,22 @@ body {
 	font-size: 14px;	
 }
 
+.htmlbox textarea, input.text, #trspisok textarea, #close_text {
+	box-sizing: border-box;
+	color: #474748;
+    background-color: #C2CBCE;
+	font-family: Georgia, serif;
+	font-size: 14px;	
+}
+
+#vkl li a  {
+	color: #474748;
+}
+
+div#w18p.bordered.menu_block {
+	display: none;
+}
+
 /*ДОБАВЛЯЕМ ЗЛОСЧАСТНЫЙ ХЭДЕР*/
 #wrapper div.bordered.menu_block {
 	background-image: url(head.png);
@@ -53,10 +69,12 @@ div.sign {
 	position: absolute;
 	right: 0px;
 	margin-left:66%;
-	padding-right: 10px; 
-	width: 33%;
+	padding-right: 10px;
+	padding-left: 15px; 
+	/*width: 33%;*/
+	color: #DBE6EC;
 	background-color: #484B53;
-	text-shadow: 0 0 1px #FAFCFD;
+	text-shadow: 0 0 3px #FAFCFD;
 }
 
 #side {
@@ -71,8 +89,18 @@ div.sign {
 				0 6px 20px 0 rgba(0, 0, 0, 0) inset;	
 }
 
-#topNav a, #bottomNav a, a, .linkssection .postLinks a, #side h1 a, .header a {
-	color: #81A8B8;
+#topNav a, #bottomNav a, a, .linkssection .postLinks a, #side h1 a, .header a, .TagL {
+	color: #81A8B8;	
+	/*transition: color 0.5s;*/
+}
+
+.paragraph a {
+	text-decoration: none;
+	transition: color 0.5s ease-in-out;
+}
+
+.paragraph a:hover {
+	color: #474748;
 }
 
 img {
