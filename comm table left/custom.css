@@ -1,47 +1,52 @@
+/*ЗАДАЁТСЯ ФОН ДНЕВНИКА, ШРИФТ И ЕГО ЦВЕТ*/
 body {
 	box-sizing: border-box;
-	/*color: #DBE6EC;*/
-	color: #484B53;
-	background-color: #DBE6EC;
-	background-image: url(bg-2.png);
-	background-repeat: repeat;	
+	color: #474748;
+    background-color: #C2CBCE;
+	font-family: Georgia, serif;
+	font-size: 14px;	
 }
 
+/*ДОБАВЛЯЕМ ЗЛОСЧАСТНЫЙ ХЭДЕР*/
 #wrapper div.bordered.menu_block {
 	background-image: url(head.png);
 	background-repeat: no-repeat;
 	background-position: center;
-	height: 509px;
+	background-size: contain;
+	height: 574px;
 }
 
+/*ТОЧЕЧНАЯ РАЗМЕТКА МЕЖДУ ЗАПИСЯМИ*/
 .postLinksBackg {
 	padding-bottom: 15px;
-	border-bottom: 1px dotted #484B53;
+	border-bottom: 1px dotted #474748;
 }
 
+/*ОПРЕДЕЛЯЕМ ЦВЕТ ФОНА ЗАПИСЕЙ, РАМКИ И ГРАНИЦЫ*/
 div#postsArea.bordered {
-	/*background-color: #484B53;*/
 	position: relative;
-	background-color: #E8F3F8;
+	background-color: #FAFCFD;
 	box-sizing: border-box;
-/*	padding-right: 15px;
-	padding-left: 15px;
-	padding-bottom: 15px;*/
 	padding: 15px;
-	border: 10px solid #484B53;
-	border-top: 20px solid #484B53;
-	/*border-radius: 25px;*/
+	border: 10px solid #474748;
+	border-top: 20px solid #474748;
 	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5),
 				0 6px 20px 0 rgba(0, 0, 0, 0.5),
 				0 6px 20px 0 rgba(0, 0, 0, 0) inset;
 }
 
+div.sign {
+	color: #A4BCC2;
+	font-size: 0.75em;
+}
+
+/*ЗАДАЁМ ПАРАМЕТРЫ ЗАГОЛОВКА ЗАПИСИ */
 .header, h1, .postDate, .countSecond .postDate {
 	color: #81A8B8
 }
 
 .postTitle.header {
-	padding-top: 26px;
+	padding-top: 29px;
 }
 
 .countSecond .postDate, .countFirst .postDate {
@@ -51,13 +56,25 @@ div#postsArea.bordered {
 	padding-right: 10px; 
 	width: 33%;
 	background-color: #484B53;
-	text-shadow: 0 0 3px #E8F3F8;
+	text-shadow: 0 0 1px #FAFCFD;
 }
 
 #side {
+	position: fixed;
+	z-index: 0;
+	box-sizing: border-box;	
 	background-color: #fff;
+	border: 10px solid #474748;
+	border-top: 20px solid #474748;	
+	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5),
+				0 6px 20px 0 rgba(0, 0, 0, 0.5),
+				0 6px 20px 0 rgba(0, 0, 0, 0) inset;	
 }
 
 #topNav a, #bottomNav a, a, .linkssection .postLinks a, #side h1 a, .header a {
 	color: #81A8B8;
+}
+
+img {
+	max-width: 100%;
 }
