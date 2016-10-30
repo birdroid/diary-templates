@@ -23,6 +23,10 @@ div#w18p.bordered.menu_block {
 	display: none;
 }
 
+#wrapper {
+	min-width: auto;
+}
+
 /*ДОБАВЛЯЕМ ЗЛОСЧАСТНЫЙ ХЭДЕР*/
 #wrapper div.bordered.menu_block {
 	background-image: url(head.png);
@@ -107,7 +111,7 @@ img {
 	max-width: 100%;
 }
 
-@media only screen and (max-width: 1009px) {
+@media only screen and (max-width: 768px) {
 
 	#wrapper {
 		position: relative;
@@ -126,8 +130,6 @@ img {
 	#side {
 		top: 0;
 		width: 100% !important;
-		margin-right: 9px;
-		margin-left: 9px;
 
 	}
 
