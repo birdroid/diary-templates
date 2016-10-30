@@ -36,6 +36,11 @@ div#w18p.bordered.menu_block {
 	height: 574px;
 }
 
+#epigraph .postContent a {	
+	text-shadow: 0 0 1px #474748;
+	text-decoration: none;
+}
+
 /*ТОЧЕЧНАЯ РАЗМЕТКА МЕЖДУ ЗАПИСЯМИ*/
 .postLinksBackg {
 	padding-bottom: 15px;
@@ -74,8 +79,7 @@ div.sign {
 	right: 0px;
 	margin-left:66%;
 	padding-right: 10px;
-	padding-left: 15px; 
-	/*width: 33%;*/
+	padding-left: 15px;
 	color: #DBE6EC;
 	background-color: #484B53;
 	text-shadow: 0 0 3px #FAFCFD;
@@ -133,10 +137,6 @@ img {
 
 	}
 
-/*	div#postsArea.bordered {
-		margin: 0 !important;
-	}
-    */
     .left .menuSection_title{ display:block; cursor:pointer; }
 	
 	.left #topNav{ display:none; }
@@ -145,7 +145,7 @@ img {
 	
 	#bottomNav #Stats{float:right;} 
 	
-	.left #side{ float: none; display:block; margin-bottom:1px; width:auto; }
+	.left #side{ float: none; display:block; }
 	
 	.left .menuSection{ float:left; background-color: transparent; }
 	
