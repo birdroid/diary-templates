@@ -1,0 +1,604 @@
+
+var msg, enabled, gecko;
+if(msg==null) msg = document.getElementById("message");
+
+// *******************************************************
+tags = new Array();
+if (navigator.userAgent.indexOf('Opera') != -1) advanced_code = 0;
+else if (navigator.appName && navigator.appName.indexOf("Microsoft") != -1 && navigator.userAgent.indexOf("Windows") != -1 && navigator.userAgent.indexOf("Windows 3.1") == -1) advanced_code = 1; // use IE 4+ specific createRange functionality
+	 else advanced_code = 0;
+
+// *******************************************************
+// replacements for unsupported array functions (because arrayname.push(var)
+// and arrayname.pop() are not implemented in IE until version 5.5)
+
+function getarraysize(thearray)
+{
+// replacement for arrayname.length property
+	for (i = 0; i < thearray.length; i++) if ((thearray[i] == "undefined") || (thearray[i] == "") || (thearray[i] == null)) return i;
+
+	return thearray.length;
+}
+
+function arraypush(thearray,value)
+{
+// replacement for arrayname.push(value)
+	thearraysize = getarraysize(thearray);
+	thearray[thearraysize] = value;
+}
+
+function arraypop(thearray)
+{
+// replacement for arrayname.pop()
+	thearraysize = getarraysize(thearray);
+	retval = thearray[thearraysize - 1];
+	delete thearray[thearraysize - 1];
+	return retval;
+}
+
+// *******************************************************
+
+function setmode(modevalue) {
+// sets cookie for normal (0) and enhanced (1) modes
+        document.cookie = "vbcodemode="+modevalue+"; path=/; expires=Wed, 1 Jan 2020 00:00:00 GMT;";
+}
+
+function normalmode(theform) {
+// checks value of mode radio buttons. returns true if normal mode
+        if (null != theform.mode && theform.mode[1].checked) return false;
+        else return true;
+}
+
+function stat(thevalue) {
+// places mini-help text into help/error textbox
+// strings are stored in vbcode_language.js
+        document.vbform.status.value = eval(thevalue+"_text");
+}
+
+// *******************************************************
+
+function ieWrap(textfield, open, close) {
+	textfield.focus();
+	sel = document.selection.createRange();
+	sel.text=open+sel.text+close;
+}
+// From http://www.massless.org/mozedit/
+function mozWrap(textfield, open, close) {
+	//var selLength = textfield.textLength;
+	var selStart = textfield.selectionStart;
+	var selEnd = textfield.selectionEnd;
+	if (selEnd == 1 || selEnd == 2)
+		selEnd = selLength;
+
+	var s1 = (textfield.value).substring(0,selStart);
+	var s2 = (textfield.value).substring(selStart, selEnd)
+	var s3 = (textfield.value).substring(selEnd, selLength);
+	textfield.value = s1 + open + s2 + close + s3;
+}
+function anyWrap(textfield, open, close, prompttext) {
+	inserttext = prompt(tag_prompt+"\n"+open+"maRk"+close, prompttext);
+	if ((inserttext != null) && (inserttext != ""))
+	textfield.value += open+inserttext+close;
+}
+
+function insertCode(textfield, vbcode, prompttext){
+	var open = "["+vbcode+"]";
+	var close = "[/"+vbcode+"]";
+	if(advanced_code){ //Internet Explorer
+		ieWrap(textfield, open, close);
+	}else if(textfield.selectionEnd && (textfield.selectionEnd - textfield.selectionStart > 0)){ //Mozila
+		mozWrap(textfield, open, close);
+	}else{ // другие браузеры
+		anyWrap(textfield, open, close, prompttext);
+	}
+}
+
+// *******************************************************
+
+function smilie( smilietext ) {
+
+	if (advanced_code) {
+		if( document.getElementById( 'L_1' ) == null || document.getElementById( 'L_1' ).className == 'current' ){
+			document.vbform.message.focus();
+	        sel = document.selection.createRange();
+    	    sel.collapse();
+        	sel.text= " "+smilietext+" ";
+		}else{
+			tinyMCE.execInstanceCommand('mce_editor_0','mceSmile',false,smilietext);
+		}
+	}else{
+		if( document.getElementById( 'L_1' ) == null || document.getElementById( 'L_1' ).className == 'current' ){
+			msg.value += smilietext+" ";
+		}else{
+			tinyMCE.execInstanceCommand('mce_editor_0','mceSmile',false,smilietext);
+		}
+	}
+}
+
+function smilie_vis( obj )
+{
+	if( document.getElementById( 'L_1' ) == null || document.getElementById( 'L_1' ).className == 'current' )
+		 insertCodeHTML(msg, obj.alt + '[cuRs][maRk]');
+	else tinyMCE.execInstanceCommand('mce_editor_0','mceSmile',false,'<img src="'+obj.src+'" class="smile" alt="'+obj.alt+'">');
+}
+
+// *******************************************************
+
+function uEnCode(obj){
+	if (advanced_code) {
+		obj.focus();
+		var obj2 = document.selection.createRange();
+		if(obj2.text != null && obj2.text!=""){
+			obj2.text = uCode(obj2.text);
+			obj2.collapse();
+			obj2.select();
+		}else{
+			alert('Ќе выделен текст дл€ преобразовани€');
+		}
+	}else if(obj.selectionEnd && (obj.selectionEnd - obj.selectionStart > 0)){ //Mozila
+		var selLength = obj.textLength;
+		var selStart = obj.selectionStart;
+		var selEnd = obj.selectionEnd;
+		if (selEnd == 1 || selEnd == 2)
+			selEnd = selLength;
+
+		var s1 = (obj.value).substring(0,selStart);
+		var s2 = (obj.value).substring(selStart, selEnd)
+		var s3 = (obj.value).substring(selEnd, selLength);
+		obj.value = s1 + uCode(s2) + s3;
+	}else{
+		alert('Ќе выделен текст дл€ преобразовани€');
+	}
+}
+function uCode(text){
+  ecd = "";
+  if (text != "") {
+     for (i = 0; i < text.length; i++) ecd += "\&#" + String(text.charCodeAt(i)) + ";";
+  }
+  return ecd;
+}
+//====================================================================================================================
+// ‘ункции транслировани€ текста
+// One character letters
+t_table1 = "ABVGDEZIJKLMNOPRSTUFHXCYWabvgdezijklmnoprstufhxcy'#w";
+w_table1 = "јЅ¬√ƒ≈«»… ЋћЌќѕ–—“”‘’’÷џўабвгдезийклмнопрстуфххцыьъщ";
+
+// Two character letters
+t_table2 = "YOJOZHCHSHYUJUYAJAJEyojozhchshyujuyajajeYoYoZhChShYuJuYaJaJe";
+w_table2 = "®®∆„ЎёёяяЁЄЄжчшюю€€э®®∆„ЎёёяяЁ";
+
+//// One character letters
+//w_table1 = "ABVGDEZIJKLMNOPRSTUFHXCYWabvgdezijklmnoprstufhxcy'#w";
+//t_table1 = "јЅ¬√ƒ≈«»… ЋћЌќѕ–—“”‘’’÷џўабвгдезийклмнопрстуфххцыьъщ";
+//
+//// Two character letters
+//w_table2 = "YOJOZHCHSHYUJUYAJAJEyojozhchshyujuyajajeYoYoZhChShYuJuYaJaJe";
+//t_table2 = "®®∆„ЎёёяяЁЄЄжчшюю€€э®®∆„ЎёёяяЁ";
+
+function translit2win(str)
+{
+ var len = str.length;
+ var new_str="";
+
+ for (i = 0; i < len; i++)
+ {
+  // Check for 2-character letters
+  is2char=false;
+  if (i < len-1) {
+   for(j = 0; j < w_table2.length; j++)
+   {
+    if(str.substr(i, 2) == t_table2.substr(j*2,2)) {
+     new_str+= w_table2.substr(j, 1);
+     i++;
+     is2char=true;
+     break;
+    }
+   }
+  }
+
+  if(!is2char) {
+   // Convert one-character letter
+   var c = str.substr(i, 1);
+   var pos = t_table1.indexOf(c);
+   if (pos < 0)
+    new_str+= c;
+   else
+    new_str+= w_table1.substr(pos, 1);
+  }
+ }
+
+ return new_str;
+}
+
+function translit_text( obj ){
+	if (advanced_code) {
+		obj.focus();
+		var obj2 = document.selection.createRange();
+		if(obj2.text != null && obj2.text!=""){
+			obj2.text = translit2win(obj2.text);
+			obj2.collapse();
+			obj2.select();
+		}else{
+			alert('Ќе выделен текст дл€ преобразовани€');
+		}
+	}else if(obj.selectionEnd && (obj.selectionEnd - obj.selectionStart > 0)){ //Mozila
+
+		var selLength = obj.textLength;
+		var selStart = obj.selectionStart;
+		var selEnd = obj.selectionEnd;
+		if (selEnd == 1 || selEnd == 2)	selEnd = selLength;
+
+		var s1 = (obj.value).substring(0,selStart);
+		var s2 = (obj.value).substring(selStart, selEnd)
+		var s3 = (obj.value).substring(selEnd, selLength);
+		obj.value = s1 +  translit2win(s2) + s3;
+	}else{
+		alert('Ќе выделен текст дл€ преобразовани€');
+	}
+}
+
+//==========   ќтсюда идут мои функции   ===========//
+
+// obj         - ссылка на форму с которой будем работать
+// insert_text - сам текст длы вставки
+//¬ шаблоне [maRk] это куда вставл€ть выделенный ,текст
+// [sss] - куда установить селектор
+function InsertTextinVisForm( obj, insert_text ){
+	obj.focus();
+	//	var selLength = obj.textLength;    //ƒлина выделенного текста
+	//var selStart = obj.selectionStart; //Ќачало выделенного текста
+	//var selEnd = obj.selectionEnd;     // онец выделенного текста
+	var sel = document.selection.createRange(); //¬ыделенные текст сссылка
+	//if (selEnd == 1 || selEnd == 2)
+	//	selEnd = selLength;
+	//sel.text - хранит в себе выделенный текст
+	obj.focus();
+
+	var out = insert_text.replace( "[maRk]", sel.text );
+
+	sel.text = out;
+
+}
+
+// *******************************************************
+
+function caret( node ) {
+
+	var selll = document.selection.createRange();
+    var clonell = selll.duplicate();
+
+	if(node.selectionStart) return node.selectionStart;
+	else if(!document.selection) return 0;
+	var c        = "\001";
+	var sel    = document.selection.createRange();
+
+	if (sel.text.length<1) {
+		var dul    = sel.duplicate();
+		var len    = 0;
+		dul.moveToElementText(node);
+		sel.text   = c;
+		len        = (dul.text.indexOf(c));
+		sel.moveStart('character',-1);
+		sel.text   = "";
+		return len;
+	}else{
+		selll.collapse(true);
+ 	   	clonell.moveToElementText(node);
+  	  	clonell.setEndPoint('EndToEnd', selll);
+   	 	return clonell.text.length;//хранит позицию курсора, надо учесть символы переноса
+
+	}
+
+}
+
+function numword( obj ) {
+
+	var crt=caret( obj );
+
+	if (crt!="select") {
+
+		if (crt==-1) crt=obj.value.length;
+
+		var h='%0A';
+		var s=escape(obj.value.substr(0,crt));
+		var m=3;
+		var res=0;
+		var i=4;
+
+		while (i <= s.length-1) {
+			ch=s.substr(i,m);
+			if (ch==h) {res+=1; i=i+m-1;}
+			else i++;
+		}
+		return res+1;
+	}
+	else return false;
+
+}
+
+
+function ieWrapHTML(textfield, textreplace ) {
+
+	textfield.focus();
+
+	var sel3 = document.selection.createRange();
+	vrtext = sel3.text;
+	sel3.text = " ";
+
+	var sel = document.selection.createRange();
+    var clone = sel.duplicate();
+	var sel2 = sel.duplicate();
+	var selend = sel.duplicate();
+
+	textreplace = textreplace.replace( /\[RRR\]/gi, '"' );
+	textreplace = textreplace.replace( /\[maRk\]/gi, vrtext );
+
+
+    sel.collapse(true);
+    clone.moveToElementText(textfield);
+    clone.setEndPoint('EndToEnd', sel);
+    var pos_cursor = clone.text.length;//хранит позицию курсора, надо учесть символы переноса
+
+	var dvig = textreplace.indexOf("[cuRs]");//”знаем куда надо вставить курсор
+	textreplace = textreplace.replace( /\[cuRs\]/gi, "" );
+	pos_end = pos_cursor + textreplace.length;
+	if( dvig >0 ){
+		pos_cursor = pos_cursor + dvig;
+	}
+
+
+
+	knum = numword(textfield);//поправочный коэффициент так как перенос строки это два символа
+	if( knum ){
+		pos_cursor = pos_cursor - knum + 1;
+	}
+	if( vrtext.length > 0 ){
+		pos_cursor = pos_end - knum + 1;
+	}
+
+
+	sel2.text = textreplace;
+
+	var rng=textfield.createTextRange();
+	rng.collapse();
+	rng.moveStart("character",pos_cursor);
+	rng.select();
+}
+// From http://www.massless.org/mozedit/
+function mozWrapHTML(textfield, textreplace ) {
+	textreplace = textreplace.replace( /\[RRR\]/gi, '"' );
+
+	textreplace       = textreplace.replace( /\[RRR\]/gi, '"' );
+
+	var selLength = textfield.textLength;
+	var selStart = textfield.selectionStart;
+	var selEnd = textfield.selectionEnd;
+	var scrollTop = textfield.scrollTop;
+	var dvig = textreplace.indexOf("[cuRs]");//”знаем куда надо вставить курсор
+	var pos_cursor = selStart + dvig;
+	pos_cursor = selStart;
+	textreplace       = textreplace.replace( /\[cuRs\]/gi, '' );
+	if( dvig >0 ){
+		pos_cursor = pos_cursor + dvig;
+	}
+	if (selEnd == 1 || selEnd == 2)
+		selEnd = selLength;
+
+	var s1 = (textfield.value).substring(0,selStart);
+	var s2 = (textfield.value).substring(selStart, selEnd)
+	var s3 = (textfield.value).substring(selEnd, selLength);
+	var vrtext = textreplace.replace( /\[maRk\]/gi, s2 );
+	textfield.value = s1 + vrtext + s3;
+
+	if( (selEnd - selStart)>0 ){
+		pos_cursor = selStart+vrtext.length;
+	}
+
+	textfield.focus();
+	textfield.selectionStart = pos_cursor;
+	textfield.selectionEnd = pos_cursor;
+	textfield.scrollTop = scrollTop;
+}
+function anyWrapHTML(textfield, textreplace, prompttext)
+{
+	textreplace = String(textreplace);
+     textreplace = textreplace.replace( /\[RRR\]/g, '"' );
+     textreplace = textreplace.replace( /\[cuRs\]/g, '' );
+	re = /^\s*<img[^>]+>\s*$/;
+	if (!re.test(textreplace))
+	 {
+		inserttext = prompt("¬ведите текст: "+"\n");
+		if ((inserttext != null) && (inserttext != "")) textfield.value += textreplace.replace( /\[maRk\]/g, inserttext );
+     }
+     textfield.value += textreplace;
+}
+
+function insertCodeHTML(textfield, textreplace )
+{
+	var bst = getBodyScrollTop();
+
+	if (advanced_code) ieWrapHTML(textfield, textreplace); //Internet Explorer
+	else if( textfield.selectionStart || textfield.selectionStart == '0' ) mozWrapHTML(textfield, textreplace); //Mozila
+	else anyWrapHTML(textfield, textreplace, ""); // другие браузеры
+
+	if (self.pageYOffset) self.pageYOffset = bst;
+	if (document.documentElement) document.documentElement.scrollTop = bst;
+	if (document.body) document.body.scrollTop = bst;
+
+	return false;
+}
+
+function insertMedia( obj )
+{
+	window.open('/diary.php?module=photolib&act=plist&insertmedia=', obj, 'width=650, height=600, location=0, toolbar=0, menubar=0, status=0, scrollbars=1, resizable=1');
+	//return false;
+}
+//=======================================================================================================
+function keyAction(e)
+{
+	try
+	{
+		var autosave_timer_value = get('autosave_timer_value');
+		if (autosave_timer_value!= null) autosave(20);
+	}
+	catch(err){}
+
+    if (e.shiftKey || e.altKey || !e.ctrlKey) return;
+    var Key = e.keyCode;
+    if (Key == 0) Key = e.charCode;
+    if (!gecko && Key>64 && Key<91) Key += 32;
+//	alert(Key);
+    switch (Key)
+    {
+		case 13: if(_checkVal()){if(get('button_panel')!=null){if(get('button_panel').style.display=="none") showMsg("alert","—охранение невозможно. ƒождитесь завершени€ текущей операции..."); else save('rewrite');}else document.getElementById("msg_form").submit();} break;
+		case 17: return false;
+		case 98:  btClick('B'); break;
+		case 105: btClick('I'); break;
+		case 111: btClick('OT'); e.preventDefault();break;
+		case 117: btClick('U'); break;
+		case 115:  if(_checkVal() && get('button_panel')!=null){if(get('button_panel').style.display=="none") showMsg("alert","—охранение невозможно. ƒождитесь завершени€ текущей операции..."); else save('draft_save');} break;
+		/*btClick('S'); break;*/
+		case 189: btClick('-'); break;
+		default: return;
+    }
+    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+}
+
+function keyPressInit()
+{
+    msg = document.getElementById("message");
+    if (!msg) return;
+    msg.onfocus = function(){enabled=true;}
+    msg.onblur = function(){enabled=false;}
+
+    if (document.addEventListener)
+    {
+        document.addEventListener("keypress",function(e){keyAction(e)},true);
+        if (window.opera) return;
+        document.addEventListener("keydown", function(e){keyAction(e)},true);
+        gecko = true;
+    }
+    else if (document.attachEvent) document.attachEvent("onkeydown", keyAction);
+}
+
+window.onload = keyPressInit;
+
+function btClick(key)
+{
+	switch(key)
+	{
+		case "B": insertCodeHTML( msg, '<b>[cuRs][maRk]</b>' ); break;
+		case "I": insertCodeHTML( msg, '<i>[cuRs][maRk]</i>' ); break;
+		case "S": insertCodeHTML( msg, '<s>[cuRs][maRk]</s>' ); break;
+		case "U": insertCodeHTML( msg, '<u>[cuRs][maRk]</u>' ); break;
+		case "OT": insertCodeHTML( msg, '<span class=[RRR]offtop[RRR]>[cuRs][maRk]</span>');break;
+		case "-": insertCodeHTML( msg, 'Ч [cuRs][maRk]' ); break;
+	}
+	return false;
+}
+//=======================================================================================================
+var current_smile_group = -1;
+var timeout = 10000;
+var timer;
+
+function SelectSmileGroup2(id_group)
+{
+	get("SelectSmileGroup").blur();
+	_show_loading(get("favSmiles"));
+	Smile_Loader.document.location.href = '/js/smile_group' + id_group + '.js';
+	current_smile_group = id_group;
+}
+function SelectSmileGroup3()
+{
+	obj = get("SelectSmileGroup");
+	if(obj != null && obj.value != current_smile_group)
+	{
+		current_smile_group = obj.value;
+		_show_loading(get("favSmiles"), 1);
+		loadV('/js/smile_group' + obj.value + '.js');
+//		Smile_Loader.document.location.href = '/smile.php?group_id=' + obj.value + '&js';
+//		timeout = 1000;
+		clearTimeout(timer);
+	}
+	else timer = setTimeout('SelectSmileGroup3()',timeout);
+}
+//=======================================================================================================
+function UseAvatar()
+{
+    get('avatar').checked ? show3('AvatarSelector') : hide3('AvatarSelector');
+    return false;
+}
+function check_addPicture()
+{
+    get('addPicture').checked ? show3('addPictureSection') : hide3('addPictureSection');
+    return false;
+}
+//=======================================================================================================
+
+	function adduploader(target)
+	{
+		uploadcounter++;
+		get(target).innerHTML += '<span id="uploadform' + uploadcounter + '_div">' +
+			'<span id="uploadform' + uploadcounter + '_file">'+
+			'<input id="attachmentfile' + uploadcounter + '" type="file" accept="image/jpeg,image/png,image/gif" class="text" size="70" name="attachment' + uploadcounter + '" onchange="fileupload(' + uploadcounter +');adduploader(\'' + target + '\');" "ShowDiv(\'uploadform' + uploadcounter + '_bt\');" /></span>' +
+			'<span id="uploadform' + uploadcounter + '_bt" style="display:none;"><input type="button" onclick="fileupload(' + uploadcounter +');adduploader(\'' + target + '\');" value="загрузить" class="submit" /></span>' +
+			'</span>';
+	}
+	function fileupload(c)
+	{
+		get('uploadformtemp').innerHTML +=
+                        '<span id="uploadform' + c + '"><form id="uploadform' + c +'_form" action="/diary.php?upload=' + c + '&js" method="post" enctype="multipart/form-data" target="uploadform' + c +'_frame">' +
+			'<input type="hidden" name="module" value="photolib"/><input type="hidden" name="signature" value="' + signature + '" />' +
+			'<input type="hidden" name="resulttype' + uploadcounter +'" value="' + get('resulttype').value + '" />' +
+			'</form><iframe name="uploadform' + c +'_frame" id="uploadform' + c +'_frame"></iframe></span>';
+
+		obj = get('uploadform' + c);
+		get('uploadform').appendChild(obj);
+
+		obj = get('attachmentfile' + c);
+		get('uploadform' + c +'_form').appendChild(obj);
+		imgeditadd(c, '<img src="http://static.diary.ru/img/progress2_10x10.gif" title="загрузка: ' + obj.value + '"/>');
+
+		get('uploadform' + c + '_form').submit();
+	}
+	function imgeditadd (c, img)
+	{
+		if (!get('addPicture').checked) {get('addPicture').checked = true; check_addPicture();}
+		ShowDiv('addPictureSectionRes_outter');
+		get('addPictureSectionRes').innerHTML += '<table class="fleft" style="background:rgba(198,198,198,0.3);border:solid 1px rgba(0,0,0,0.2); width:102px;height:102px;margin:2px;padding:2px;" id="uploadform' + c + '_restable"><tr><td id="uploadform' + c + '_res" align="center" style="overflow:hidden;">' + img + '</td></tr></table>';
+	}
+	function imgthumb (c, url)
+	{
+		return '<div style="width:100px;height:100px;background:url(' + url + ') 50% 50% no-repeat;"><a href="#" onclick="return imgremove(' + c + ');"><img src="http://static.diary.ru/images/nok.gif" align="right" style="margin:1px;opacity:0.6;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);"></a></div>';
+	}
+	function imgremove (c)
+	{
+		get('message').value = get('message').value.replace(images[c][0],"");
+		HideDiv('uploadform' + c + '_restable');
+                images[c] = null;
+
+                for (i=0;i<images.length;i++) if (images[i]!=null) return false;
+
+		hide('addPictureSectionRes_outter');
+		return false;
+	}
+	function imgfind(text)
+	{
+		var result = Array();
+		var r123 = "(\/userdir\/[0-9]+\/[0-9]+\/[0-9]+\/[0-9]+\/[0-9]+\/)(thumb\/)([0-9]+[.][a-z]{3})";
+		var r13 = "(\/userdir\/[0-9]+\/[0-9]+\/[0-9]+\/[0-9]+\/[0-9]+\/)()([0-9]+[.][a-z]{3})";
+
+		var r = [new RegExp("<a [^>]*" + r13 + "[^>]*><img [^>]*" + r123 + "[^>]*><\/a>", "ig"),
+				new RegExp(".more=<img [^>]*" + r123 + "[^>]*>.<img [^>]*" + r13 + "[^>]*>.\/more.", "ig"),
+				new RegExp("<img [^>]*" + r123 + "[^>]*>", "ig"),
+				new RegExp("<img [^>]*" + r13 + "[^>]*>", "ig")];
+		for (var i=0; i<r.length; i++)
+			while (t = r[i].exec(text))
+			{
+				result[result.length] = t;
+				text = text.replace(t[0], "");
+			}
+
+		return result;
+	}
+//=================================================================================================================================

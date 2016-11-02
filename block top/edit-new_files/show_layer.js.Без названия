@@ -1,0 +1,112 @@
+//<!--
+	var isDOM=document.getElementById; //DOM1 browser (MSIE 5+, Netscape 6, Opera 5+)
+	var isMSIE=document.all && document.all.item; //Microsoft Internet Explorer 4+
+	var isNetscape4=document.layers; //Netscape 4.*
+	var isOpera=window.opera; //Opera
+	var isOpera5=isOpera && isDOM; //Opera 5+
+	var isMSIE5=isDOM && isMSIE && !isOpera; //MSIE 5+
+	var isMozilla=isNetscape6=isDOM && !isMSIE && !isOpera;
+	var isOpera7 = isDOM && isMSIE && isOpera5;
+
+	function getScrollY(){
+		if( isMozilla ){
+			return Number(scrollY);
+		}else{
+			return Number(document.documentElement.scrollTop);
+		}
+	}
+	function getScrollX(){
+		if( isMozilla ){
+			return Number(scrollX);
+		}else{
+			return Number(document.documentElement.scrollWidth);
+		}
+	}
+
+	var sform = {
+		showform : function (obj, form_id, position, t, b)
+		{// Проверяет брать событие с мыши или нетz
+		    var new_x = 0;
+		    var new_y = 0;
+		    var vrscrollY = getScrollY();
+		    if( t==null ) t=0;
+		    if( b==null ) b=0;
+
+		    this.form  = document.getElementById(form_id);
+		    this.block = false;
+		    this.nclik = false;
+
+		    if (obj.pageX || obj.pageY) {
+			    new_x = obj.pageX;
+			    new_y = obj.pageY;
+		    }else if (obj.clientX || obj.clientY) {
+			    new_x = obj.clientX;
+			    new_y = obj.clientY + getScrollY();
+		    }else{
+			    if( this.objs != null && this.objs == obj && this.form.style.display != 'none'  ){this.closeform(); return;}
+
+				this.objs = obj;
+
+				var left = 0;
+				var top = 0;
+				var obj_h = obj.offsetHeight;
+				var obj_w = obj.offsetWidth;
+				var obj_d = obj;
+				while(obj)
+				{
+				    left += obj.offsetLeft;
+				    top += obj.offsetTop;
+				    if(obj.style.borderTopWidth != '') top += parseInt(obj.style.borderTopWidth);
+				    if(obj.style.borderLeftWidth!='') left += parseInt(obj.style.borderLeftWidth);
+				    obj=obj.offsetParent;
+				}
+
+				if( isMozilla )
+				{
+					mrg_x = obj_d.style.marginLeft;
+					mrg_x = Number(mrg_x.replace( /px/i, '' ));
+					mrg_y = obj_d.style.marginTop;
+					mrg_y = Number(mrg_y.replace( /px/i, '' ));
+				}
+				else	mrg_x = mrg_y = 0;
+
+				// Определяем позицию вывода
+				new_x = left + mrg_x;
+				new_y = top  + mrg_y + obj_h + 1;
+				if( position == 'lb' ){
+					new_x = left + mrg_x - obj_w-1;
+					new_y = top  + mrg_y + obj_h+1;
+				}else if( position == 'rt' ){
+					new_x = left + mrg_x + obj_w+1;
+					new_y = top  + mrg_y;
+				}else if( position == 'rb' ){
+					new_x = left + mrg_x + obj_w+1;
+					new_y = top  + mrg_y + obj_h;
+				}
+			}
+
+//			obj.appendChild(this.form);
+
+			this.form.style.display    = 'block';
+			this.form.style.visibility = 'visible';
+			this.form.style.left = new_x + b + 'px';
+			this.form.style.top  = new_y + t + 'px';
+//			this.form.style.position  = 'relative';
+
+		},
+		hideform : function(){
+			if( this.nclik  && !this.block ){
+				this.objs = null;
+				if( this.form!=null ) this.form.style.display = 'none';
+			}else{
+				this.nclik = true;
+			}
+		},
+		closeform : function(){
+			if( this.form!=null ){
+				this.objs = null;
+				this.form.style.display = 'none';
+			}
+		}
+	}
+//-->

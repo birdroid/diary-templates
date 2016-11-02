@@ -1,0 +1,225 @@
+	//==============================================================
+	var m_name          = new Array();
+	var row_sel         = 'ms_0';         // Выделенное поле
+	var sug_oppen       = false;
+	var sug_block       = false;
+	var m_row           = new Array();
+	var n_arr           = new Array();
+	var old_text        = '';
+	var pos_caret       = '';
+	var pos_caret_old   = '';
+	var form_suggest_id = 'suggestform';
+	var suggest_dir     = 'http://static.diary.ru/js/suggest/';
+	var input_id        = 'tags';
+	var num_steps       = 2;              // Количество ступеней вложенности -1
+	var sym_r           = ";";            // Разделительный символ
+
+	var m_top_tags      = new Array();
+
+	//for( var i=0; m_top_tags[m_top_tags.length]; i++ ) m_sg_tags[m_sg_tags.length] = m_top_tags[i].toLowerCase();
+
+	function add_form_sug(){
+		var content = '';
+		var b_inarray = false;
+		m_row = new Array();
+		var lim = 999;
+		var max_h = 252
+		if(n_arr.length<lim)lim=n_arr.length;
+
+		for ( var i=0;i<lim;i++) {
+			b_inarray = false;
+			m_row[m_row.length] = 'ms'+i;
+
+			for (var j=0; j<m_top_tags.length; j++){
+				if (n_arr[i].toLowerCase() == m_top_tags[j].toLowerCase()){
+					n_arr[i] = m_top_tags[j];
+					b_inarray = true;
+				}
+			}
+
+			if(b_inarray) content += '<b><div id="ms_'+i+'" class="suggest_unselect" align="left" onMouseOver="sug_sel(this)" onClick="Selval(this)" >'+n_arr[i]+'</div></b>';
+			                             else content += '<div id="ms_'+i+'" class="suggest_unselect" align="left" onMouseOver="sug_sel(this)" onClick="Selval(this)" >'+n_arr[i]+'</div>';
+		}
+		get(form_suggest_id).innerHTML = '<div id="sugoverflaw" style="overflow:auto;">'+content+'</div>';
+		if( get('sugoverflaw').offsetHeight > max_h ) get('sugoverflaw').style.height = max_h+"px";
+	}
+
+	function show_form_sug(){
+		n_arr = new Array();
+		//tags_name = m_top_tags.concat(tags_name);
+
+		for(var i=0; i<tags_name.length; i++) if (tags_name[i].toLowerCase().indexOf(search_text) === 0) n_arr[n_arr.length] = tags_name[i];
+		// Узнаем нашел он что-нибудь или нет
+		if(n_arr.length>0){
+			add_form_sug();
+			row_sel = 'ms_0';
+			sug_sel(get('ms_0'));
+
+			if(!sug_oppen)sform.showform(get(input_id),form_suggest_id);
+			sug_oppen = true;
+			b_check = false;
+		}else{
+			hidesug();
+		}
+		old_text = search_text;
+	}
+
+	function get_array_for_search(text){
+		var tags_name = new Array();
+		var len = text.length;
+		var uri = '';
+		for(var i=0; i<len; i++){
+			//uri += text[i].charCodeAt(0);
+			a=text.substr(i,1).charCodeAt(0);
+			if (a>0xFF) a-=0x350;
+			uri += Number(a);
+			if(i>=num_steps) break;
+			if( i+1<len ) uri += '/';
+		}
+		uri += '.js';
+		uri = suggest_dir + uri;
+		try{
+			loadV(uri);
+		}catch(err){
+			show_form_sug();
+		}
+		return tags_name;
+	}
+
+	function showsug(e){
+		if(sug_block){ sug_block=false; return; }
+		var obj = get(input_id);
+
+		pos_caret = doGetCaretPosition(get(input_id));// Позиция каретки
+
+		if (!e) e = window.event || null;
+		var num_button = e.keyCode?e.keyCode:e.charCode;
+		if(num_button==40 ||  num_button==38 || num_button==13) return;
+
+		obj.focus();
+
+		text = leftTrim(obj.value);
+		search_text = text.substr(0,pos_caret);
+		b=true;
+		for( var i=pos_caret+1; i>=0; i-- ){
+			if( text.substr(i,1)==sym_r && (pos_caret<i || b) ){
+				b=false;
+				search_text = leftTrim(text.substr(i+1,pos_caret-i));
+			}
+		}
+		if(old_text==search_text) return ;
+		if(search_text.length==0){ hidesug(); old_text =''; return ;}
+		n_arr = new Array();
+		// Берем массив для поиска
+		search_text = search_text.toLowerCase()
+		m_name = get_array_for_search(search_text);
+	}
+
+	function sug_sel( obj ){
+		fc();
+
+		get(row_sel).className = 'suggest_unselect';
+		row_sel = obj.getAttribute('id');
+		obj.className = 'suggest_select';
+	}
+
+	function hidesug(){
+		row_sel = 'ms_0';
+		sug_oppen = false;
+		sform.closeform();
+	}
+	//pushHandler(get('name'), 'keyup', handler);
+	function fc(){
+		get(input_id).focus();
+	}
+
+
+	function Selval(obj){
+		textfield = get(input_id);
+		textfield.focus();
+		pos_end   = get(input_id).value.length;
+		pos_start = 0;
+		for( var i=text.length; i>0; i-- ){
+			if( textfield.value.substr(i,1)==sym_r && pos_caret<i) pos_end = i;
+			if( textfield.value.substr(i,1)==sym_r && pos_caret>i) pos_start = i+1;
+			if(pos_end && pos_start) break;
+		}
+
+		var s = textfield.value.substr(0,pos_start);
+		var e = textfield.value.substr(pos_end,textfield.value.length);
+
+		if( pos_start<=1 ) var str_d = '';
+		              else var str_d = ' ';
+		textfield.value = s+str_d+obj.innerHTML+e;
+		pos = (s+obj.innerHTML).length;
+		setCaretPosition(textfield,pos+1);
+		hidesug();
+	}
+	function get_poscaret(){
+		pos_caret_old = doGetCaretPosition(get(input_id));// Позиция каретки
+	}
+
+	function showkey(e){
+		get(input_id).focus();
+
+		if (!e) e = window.event || null;
+		var num_button = e.keyCode?e.keyCode:e.charCode;
+
+		if(num_button==40 && sug_oppen){
+			m = row_sel.split("_");
+			if( get('ms_'+(Number(m[1])+1))!=null ){
+				sug_sel(get('ms_'+(Number(m[1])+1)));
+
+				var obj = get('ms_'+(Number(m[1])+1));
+				var o_div = get('sugoverflaw');
+				var h = o_div.offsetHeight;
+				var y=get_pos(obj).y-(get_pos(o_div).y+h)+obj.offsetHeight;
+				if((get_pos(o_div).y+h+o_div.scrollTop)<=(get_pos(obj).y+4)) o_div.scrollTop = y;
+			}
+		}else if(num_button==38 && sug_oppen){
+			m = row_sel.split("_");
+			if( get('ms_'+(Number(m[1])-1))!=null ){
+				sug_sel(get('ms_'+(Number(m[1])-1)));
+
+				var obj = get('ms_'+(Number(m[1])-1));
+				var o_div = get('sugoverflaw');
+				var h = o_div.offsetHeight;
+				var y=get_pos(obj).y-(get_pos(o_div).y);
+				if((get_pos(o_div).y+o_div.scrollTop)>=(get_pos(obj).y+4)) o_div.scrollTop = y;
+			}
+		}else if(num_button==13 && sug_oppen){
+			sug_block = true;
+			Selval(get(row_sel));
+			sug_block = true;
+		}else if(num_button==27) {
+			hidesug();
+		}
+	}
+
+	function caret_return(e){
+		fc();
+		if (!e) e = window.event || null;
+		var num_button = e.keyCode?e.keyCode:e.charCode;
+		if(num_button==40){
+			setCaretPosition(get(input_id), pos_caret_old);
+		}else if(num_button==38){
+			setCaretPosition(get(input_id), pos_caret_old);
+		}
+	}
+
+	function moveCaretToEnd(inputObject){
+		fc();
+		if (inputObject.createTextRange){
+			var r = inputObject.createTextRange();
+			r.collapse(false);
+			r.select();
+		}else if (inputObject.selectionStart){
+			var end = inputObject.value.length;
+			inputObject.setSelectionRange(end,end);
+			inputObject.focus();
+		}
+	}
+
+	function checksug(){
+		if( sug_oppen ){ get(input_id).focus(); return false; }
+	}
