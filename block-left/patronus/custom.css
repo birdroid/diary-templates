@@ -62,6 +62,8 @@ body {
 
 #wrapper {
 	min-width: auto;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 #side {
