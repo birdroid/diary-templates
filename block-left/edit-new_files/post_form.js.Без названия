@@ -1,0 +1,245 @@
+//===================================================================================================
+function check_close()
+{
+	if(document.getElementById('closedPost').checked) show('closeSection');
+	else hide('closeSection');
+
+//	if(!document.vbform.close_access_mode[1].checked && !document.vbform.close_access_mode[1].checked && !document.vbform.close_access_mode[2].checked && !document.vbform.close_access_mode[3].checked) document.vbform.close_access_mode[0].checked = true;
+}
+function check_golos()
+{
+	if(document.vbform.golos_post.checked) show('golos');
+	else hide('golos');
+}
+function check_closetext()
+{
+	if(document.vbform.closed_text.checked) show('close_text');
+	else hide('close_text');
+}
+//===================================================================================================
+var tagswin=null;
+var selectedtags = Array();
+function submittags()
+{
+//	var selectedtags=document.getElementById('tags');
+//	for(i=0;i<selectedtags.length;i++)selectedtags[i].selected=true;
+	return true;
+}
+function addtag(text,value)
+{
+	selectedtags[selectedtags.length] = value;
+
+	obj = document.getElementById('favtag' + value);
+	if (obj != null) obj.checked = true;
+
+	obj = document.getElementById('selectedTag' + value);
+	if (obj != null) obj.checked = true;
+	else
+	{
+		div = document.getElementById('selectedTagsContent');
+		if(div != null)
+		{
+			input = document.createElement("input");
+			input.type = 'checkbox';
+			input.id = "selectedTag" + value;
+			input.className = 'inp_check';
+			input.name = 'tags[]';
+			input.value = value;
+//			input.checked = true;
+			input.onclick = function(){clickontag(this);}
+//			pushHandler(input, "onclick", clickontag);
+
+			label = document.createElement("label");
+			label.setAttribute( 'for', 'selectedTag' + value);
+			label.innerHTML = text;
+
+			div.appendChild(input);
+			div.appendChild(label);
+			div.appendChild(document.createElement("br"));
+
+			document.getElementById("selectedTag" + value).checked = true;
+		}
+		//div.innerHTML += "<input id='selectedTag" + value + "' type='checkbox' class='inp_check' name='tags[]' value='" + value + "' onclick='clickontag(this);' checked><label for='selectedTag" + value + "'>" + text + "</label><br>";
+	}
+	refreshTagsContent();
+
+//	o = document.getElementById('tags');
+//	o[o.length] = new Option(text,value);
+//	if(document.getElementById('favtag'+value)!=null)document.getElementById('favtag'+value).checked=true;
+}
+function refreshTagsContent()
+{
+	return;
+
+	d1 = document.getElementById('selectedTagsContent');
+	if (d1 != null)
+	{
+		dc = d1.innerHTML;
+		d1.innerHTML = dc;
+	}
+	d1 = document.getElementById('favTagsContent');
+	if (d1 != null)
+	{
+		dc = d1.innerHTML;
+		d1.innerHTML = dc;
+	}
+}
+function deletetag(value)
+{
+	for(i=0;i<selectedtags.length;i++) if(selectedtags[i] == value) selectedtags.splice(i,1); //selectedtags[i] = null;
+
+	obj = document.getElementById('selectedTag' + value);
+	if (obj != null) obj.checked = false;
+
+	obj = document.getElementById('favtag' + value);
+	if (obj != null) obj.checked = false;
+
+	refreshTagsContent();
+//	o = document.getElementById('tags');
+//	if(document.getElementById('favtag'+value)!=null)document.getElementById('favtag'+value).checked=false;
+//	for(i=o.length-1;i>=0;i--)if(o[i].value==value){o[i]=null;return;}
+}
+function clickontag(o)
+{
+//	o1 = document.getElementById('tags');
+	if(o.checked)
+	{
+//		if(o1.length>9){alert('Уже выбрано максимальное количество тем');o.checked=false;}
+		if(selectedtags.length>9){alert('Уже выбрано максимальное количество тем');o.checked=false;}
+		else
+		{
+			label = document.getElementById('label'+o.value);
+			if(label != null) addtag(label.innerHTML,o.value);
+		}
+	}
+	else deletetag(o.value);
+}
+function openTagsWin()
+{
+	params='?userid=' + juserid;
+//	o = document.getElementById('tags');
+//	for(i=0;i<o.length;i++)params+='&tags[]='+o[i].value;
+	o = selectedtags;
+	for(i=0;i<o.length;i++)params+='&tags[]='+o[i];
+	tagswin=window.open('/tags.php'+params,'tags_window','height=650,width=500,toolbar=no,scrollbars=yes,resizable=no,alwaysRaised=1');
+	tagswin.focus();
+	return false;
+}
+//===================================================================================================
+function my_opensmiliewindow(x,y,sessionhash)
+{
+	window.open("misc.php?action=getsmilies&s"+sessionhash, "smilies", "toolbar=no,scrollbars=yes,resizable=yes,width="+x+",height="+y);
+}
+//===================================================================================================
+
+function autosave(value)
+{
+        if (get('DisableAutoSave').style.display == "none") return false;
+	var DisableAutoSaveCheck = get('DisableAutoSaveCheck');
+	if (DisableAutoSaveCheck!=null && DisableAutoSaveCheck.checked)
+	{
+		showAutosaveTimer = null;
+		if (get('autosave_timer_value')) get('autosave_timer_value').innerHTML = 0;
+		get('draft_save').value = get('draft_save').title = "Сохранить черновик";
+//		HideDiv('autosave_timer_text');
+		return;
+	}
+	var autosave_timer_value = get('autosave_timer_value');
+	if (autosave_timer_value == null) return true;
+
+	if (value)
+	{
+		oldvalue = Number(autosave_timer_value.innerHTML);
+		if (value>oldvalue)
+		{
+//			ShowDiv('autosave_timer_text');
+			get('draft_save').value = "Сохранить черновик (" + value + ")";
+			get('draft_save').title = "Через " + value + " секунд будет выполнено фоновое автосохранение записи в черновики";
+			autosave_timer_value.innerHTML = value;
+			if (showAutosaveTimer==null) showAutosaveTimer = setTimeout('autosave()', 1000);
+		}
+	}
+	else
+	{
+		value = Number(autosave_timer_value.innerHTML);
+		if (value==1)
+		{
+			autosave_timer_value.innerHTML = 0;
+			showAutosaveTimer = null;
+//			HideDiv('autosave_timer_text');
+			get('draft_save').value = get('draft_save').title = "Сохранить черновик";
+			save('draft_autosave');
+		}
+		else
+		{
+			autosave_timer_value.innerHTML = value-1;
+			get('draft_save').value = "Сохранить черновик (" + (value - 1) + ")";
+			get('draft_save').title = "Через " + (value -1) + " секунд будет выполнено фоновое автосохранение записи в черновики";
+			showAutosaveTimer = setTimeout('autosave()', 1000);
+		}
+	}
+	return true;
+}
+
+function get_message_text()
+{
+	msg = get("message");
+	return get( 'L_1' )==null || get( 'L_1' ).className=='current' ? msg.value : tinyMCE.getContent('mce_editor_0');
+}
+
+function SaveOldText()
+{
+	get('s_old_text').value = get_message_text();
+}
+
+function save(save_action)
+{
+	if (save_action!='preview') autosave(120);
+	if (save_action=='draft_autosave')
+	{
+		hide3('autosave_err');
+		var s_text = get_message_text();
+		if (get('s_old_text').value == s_text || s_text=="") return false;
+	}
+
+	if (save_action!='preview')
+	{
+		text = 'Пожалуйста подождите...';
+		switch (save_action)
+		{
+			case 'publish': text = 'Отправка записи...'; break;
+			case 'rewrite': text = 'Сохранение записи...'; break;
+			case 'draft_save': text = 'Сохранение черновика...'; break;
+			case 'draft_autosave': text = 'Автосохранение черновика...'; break;
+		}
+
+		get('msg_form').target = "NewContentFrame";
+		get('save_type').value = "js2";
+		get('dr_text_status').innerHTML = text;
+		HideSaveBt();
+		checkResultTimer = setTimeout("checkResult()",65000);
+	}
+	else
+	{
+		get('save_type').value = "default";
+		get('msg_form').target = "_blank";
+	}
+	get('act').value = Number(get('post_id').value)>0 ? 'edit_post_post':'new_post_post';
+	get('form_action').innerHTML = "<input type=hidden id='save_action' name='" + save_action + "' value='" + save_action + "' />";
+	if(save_action=='draft_autosave' || parent._checkVal()) get('msg_form').submit();
+
+	return false;
+}
+
+function ShowSaveBt()
+{
+	hide3('save_status');
+	show('button_panel');
+}
+
+function HideSaveBt()
+{
+	show3('save_status');
+	hide3('button_panel');
+}
+//===================================================================================================
