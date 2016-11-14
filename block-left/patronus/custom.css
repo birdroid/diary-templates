@@ -78,11 +78,11 @@ body {
 	background-repeat: no-repeat;
 	background-position: bottom center;
 	background-size: contain;
-	background-origin:content-box;
+	/* background-origin:content-box; */
 }
 
 #side:hover {
-	padding-bottom: 175px;
+	padding-bottom: 150px;
 }
 
 .count_box {
@@ -120,13 +120,19 @@ a:hover, .linkssection .postLinks a:hover {
 	text-shadow: 0px 0px 5px #302ebd;
 }
 
-.header, h1, .postDate, .countSecond .postDate {
+.block_design #side h1 a, .header, h1, .postDate, .countSecond .postDate {
 	font-family: 'Lobster', cursive;
 	color: #394365;
 }
 
 .header *, .postDate * {
 	font-size: 1.4em;
+}
+
+#thisDiaryPhoto img {
+	max-width: 100px;
+	max-height: 100px;
+	border-radius: 50px;
 }
 
 img, iframe {
