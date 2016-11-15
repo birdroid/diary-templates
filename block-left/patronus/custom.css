@@ -48,62 +48,12 @@ body {
     /*background-repeat: no-repeat;*/
     background-repeat-y: no-repeat;
     background-attachment: fixed;
+    padding-top: 30px;
     font-size: 14px;
     color: #a83baf;
     /*font-family: 'Lobster', cursive;*/
     font-family: 'Philosopher', sans-serif;
     font-size: 16px;
-}
-
-#page-t {
-    background-color: rgba(255,255,255,0.8);
-    box-sizing: border-box;
-    padding: 25px;
-}
-
-#wrapper {
-    min-width: auto;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-#side {
-    box-sizing: border-box;
-    padding-bottom: 20px;
-    transition: padding-bottom 0.5s;
-    padding-left: 20px;
-    padding-right: 20px;
-    position: fixed;
-    background-color: rgba(255,255,255,1);
-    background-image: url(../bg-3.png);
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: contain;
-    /* background-origin:content-box; */
-}
-
-#side:hover {
-    padding-bottom: 150px;
-}
-
-.count_box {
-    display: inline-block;
-    min-width: 10px;
-    padding: 3px 7px;
-    font-size: 0px;
-    font-weight: bold;
-    line-height: 1;
-    color: #fff !important;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-color: #4e5a8a;
-    border-radius: 10px;
-    margin-left: 5px;
-}
-
-.count_box:empty {
-    display: none;
 }
 
 a, .linkssection .postLinks a {
@@ -123,26 +73,38 @@ a:hover, .linkssection .postLinks a:hover {
     color: #394365;
 }
 
-.count_box a {
-    font-size: 14px;
-    color: #fff;
-    transition: none !important;
+#wrapper {
+    min-width: auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.header *, .postDate * {
-    font-size: 1.4em;
+#page-t {
+    background-color: rgba(255,255,255,0.8);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 25px;
 }
 
-#thisDiaryPhoto img {
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 50px;
+#side {
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding-bottom: 20px;
+    /*     transition: padding-bottom 0.5s; */
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    background-color: rgba(255,255,255,1);
+    background-image: url(../bg-3.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    /* background-origin:content-box; */
 }
 
-img, iframe {
-    max-width: 100%;
-}
-
+/* #side:hover {
+    padding-bottom: 150px;
+} */
 #side ul {
     margin-bottom: 20px;
     padding-left: 0;
@@ -191,4 +153,44 @@ div#myDiaryLinks.menuSection, .lastSection {
 
 #w18p {
     display: none;
+}
+
+.count_box {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 0px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #4e5a8a;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.count_box:empty {
+    display: none;
+}
+
+.count_box a {
+    font-size: 14px;
+    color: #fff;
+    transition: none !important;
+}
+
+.header *, .postDate * {
+    font-size: 1.4em;
+}
+
+#thisDiaryPhoto img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50px;
+}
+
+img, iframe {
+    max-width: 100%;
 }
