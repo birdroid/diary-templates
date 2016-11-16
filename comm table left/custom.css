@@ -1,199 +1,54 @@
-/*ЗАДАЁТСЯ ФОН ДНЕВНИКА, ШРИФТ И ЕГО ЦВЕТ*/
-body {
-	box-sizing: border-box;
-	color: #474748;
-    background-color: #C2CBCE;
-	font-family: Georgia, serif;
-	font-size: 14px;	
-}
-
-.htmlbox textarea, input.text, #trspisok textarea, #close_text {
-	box-sizing: border-box;
-	color: #474748;
-    background-color: #C2CBCE;
-	font-family: Georgia, serif;
-	font-size: 14px;	
-}
-
-#vkl li a  {
-	color: #474748;
-}
-
-div#w18p.bordered.menu_block {
-	display: none;
-}
-
-#wrapper {
-	min-width: auto;
-}
-
-/*ДОБАВЛЯЕМ ЗЛОСЧАСТНЫЙ ХЭДЕР*/
-#wrapper div.bordered.menu_block {
-	background-image: url(head.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-	height: 574px;
-}
-
-#epigraph .postContent a {	
-	text-shadow: 0 0 1px #474748;
-	text-decoration: none;
-}
-
-/*ТОЧЕЧНАЯ РАЗМЕТКА МЕЖДУ ЗАПИСЯМИ*/
-.postLinksBackg {
-	padding-bottom: 15px;
-	border-bottom: 1px dotted #474748;
-}
-
-/*ОПРЕДЕЛЯЕМ ЦВЕТ ФОНА ЗАПИСЕЙ, РАМКИ И ГРАНИЦЫ*/
-div#postsArea.bordered, div#addCommentArea.bordered, div#commentsArea.bordered {
-	position: relative;
-	background-color: #FAFCFD;
-	box-sizing: border-box;
-	padding: 15px;
-	border: 10px solid #474748;
-	border-top: 20px solid #474748;
-	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5),
-				0 6px 20px 0 rgba(0, 0, 0, 0.5),
-				0 6px 20px 0 rgba(0, 0, 0, 0) inset;
-}
-
-div.sign {
-	color: #A4BCC2;
-	font-size: 0.75em;
-}
-
-/*ЗАДАЁМ ПАРАМЕТРЫ ЗАГОЛОВКА ЗАПИСИ */
-.header, h1, .postDate, .countSecond .postDate {
-	color: #81A8B8
-}
-
-.postTitle.header {
-	padding-top: 29px;
-}
-
-.countSecond .postDate, .countFirst .postDate {
-	position: absolute;
-	right: 0px;
-	margin-left:66%;
-	padding-right: 10px;
-	padding-left: 15px;
-	color: #DBE6EC;
-	background-color: #484B53;
-	text-shadow: 0 0 3px #FAFCFD;
-}
-
-#side {
-	position: fixed;
-	z-index: 0;
-	box-sizing: border-box;	
-	background-color: #FAFCFD;
-	border: 10px solid #474748;
-	border-top: 20px solid #474748;	
-	box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5),
-				0 6px 20px 0 rgba(0, 0, 0, 0.5),
-				0 6px 20px 0 rgba(0, 0, 0, 0) inset;	
-}
-
-#topNav a, #bottomNav a, a, .linkssection .postLinks a, #side h1 a, .header a, .TagL {
-	color: #81A8B8;	
-	/*transition: color 0.5s;*/
-}
-
-.paragraph a {
-	text-decoration: none;
-	transition: color 0.5s ease-in-out;
-}
-
-.paragraph a:hover {
-	color: #474748;
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only screen and (max-width: 768px) {
-
-	#wrapper {
-		position: relative;
-		min-width: auto;
-	}
-
-	.left #page-t{
-		margin-left: 0 !important;
-	}
-
-	.left #page-c {
-		width: 100%;
-		margin-left: -0 !important;
-	}
-
-	#side {
-		top: 0;
-		width: 100% !important;
-
-	}
-
-    .left .menuSection_title{ display:block; cursor:pointer; }
-	
-	.left #topNav{ display:none; }
-	
-	.left #bottomNav{ display:block; }
-	
-	#bottomNav #Stats{float:right;} 
-	
-	.left #side{ float: none; display:block; }
-	
-	.left .menuSection{ float:left; background-color: transparent; }
-	
-	.left.block_design .menuSection{padding-top:0; margin-top: 0;}
-	
-	.left #side h1{ text-align:left;}
-
-	.left.block_design #side h1{padding-bottom:10px;}
-
-	.left .menuSection ul, .left #sign{	
-	background-color: #FAFCFD; display:none; position:absolute; z-index:50; margin-top:0px; padding:7px!important; }
- 
-	.left .menuSection:hover ul, .left .menuSection.iehover ul,  .left #login_form:hover #sign,  .left #login_form.iehover #sign{ display:block; }
-	.left .menuSection ul li{ white-space:nowrap; }
-	.left #YaSearch{width:200px; position:absolute; right: 0; top: 23px;}
-	.left.block_design #YaSearch{top: 45px;}
- 	.left .menuSection ul b{ font-weight:normal; }
-	.left #lastComments ul{ width:250px; }
-	.left #lastComments ul li{ width: auto; }
-	.left #thisDiaryPhoto{ display:none; position:absolute; padding:10px; margin-top:25px; right:0;}
-	.left #thisDiaryInfo:hover #thisDiaryPhoto,  .left #thisDiaryInfo.iehover #thisDiaryPhoto{ display:block; }
-	.left #authorName{ font-size: 130%; padding: 5px; font-weight:bold; display:block; white-space:nowrap; float:right; text-align:right;}
-	.left #thisDiaryInfo{ width:120px; position: absolute; right:0; top:0; text-align:right; margin: 0; z-index:50; }
-	.left #pchs ul{width: 250px;}
-	.left #pchs ul li{white-space: normal;}
-	.left.block_design #thisDiaryInfo{top:10px;}
-	.left #sign{width: 200px;}
-	
-	#YaSearch, #Stats {
-		display: none;
-	}
-
-	#wrapper div.bordered.menu_block {
-		margin-top: 90px;
-	}
-}
-
-@media only screen and (max-width: 768px) {
-	body {
-		font-size: 3vw;
-		padding: 0 !important;
-	}
-
-	#wrapper div.bordered.menu_block {
-		background-size: cover;
-	}
-
-	#side {
-		margin: 0px;
-	}	
-}
+ body {box-sizing: border-box;color: #474748;background-color: #C2CBCE;font-family: Georgia, serif;font-size: 14px;position: relative;}
+ .htmlbox textarea, input.text, #trspisok textarea, #close_text { box-sizing: border-box; color: #474748; background-color: #C2CBCE; font-family: Georgia, serif; font-size: 14px; }
+ #vkl li a { color: #474748; }
+ div#w18p.bordered.menu_block { display: none; }
+ #wrapper { min-width: auto; }
+ #add_block1 {background-image:url('head.png');background-repeat: no-repeat;background-position: center;background-size: contain;height: 574px;margin-left: 125px;top:0;position: absolute;width: 100%;z-index: -1;}
+ #epigraph .postContent a { text-shadow: 0 0 1px #474748; text-decoration: none; }
+ .postLinksBackg { padding-bottom: 15px; border-bottom: 1px dotted #474748; }
+ div#postsArea.bordered, div#addCommentArea.bordered, div#commentsArea.bordered {position: relative;background-color: #FAFCFD;box-sizing: border-box;padding: 15px;border: 10px solid #474748;border-top: 20px solid #474748;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0) inset;margin-top: 570px;}
+ div.sign { color: #A4BCC2; font-size: 0.75em; }
+ .header, h1, .postDate, .countSecond .postDate { color: #81A8B8 }
+ .postTitle.header { padding-top: 29px; }
+ .countSecond .postDate, .countFirst .postDate { position: absolute; right: 0px; margin-left:66%; padding-right: 10px; padding-left: 15px; color: #DBE6EC; background-color: #484B53; text-shadow: 0 0 3px #FAFCFD; }
+ #side { position: fixed; z-index: 0; box-sizing: border-box; background-color: #FAFCFD; border: 10px solid #474748; border-top: 20px solid #474748; box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0) inset; }
+ #topNav a, #bottomNav a, a, .linkssection .postLinks a, #side h1 a, .header a, .TagL { color: #81A8B8; }
+ .paragraph a { text-decoration: none; transition: color 0.5s ease-in-out; }
+ .paragraph a:hover { color: #474748; }
+ img { max-width: 100%; }
+ @media only screen and (max-width: 768px) { #wrapper { position: relative; min-width: auto; }
+ .left #page-t{ margin-left: 0 !important; }
+ .left #page-c { width: 100%; margin-left: -0 !important; }
+ #side { top: 0; width: 100% !important; }
+ .left .menuSection_title{ display:block; cursor:pointer; }
+ .left #topNav{ display:none; }
+ .left #bottomNav{ display:block; }
+ #bottomNav #Stats{float:right;}
+ .left #side{ float: none; display:block; }
+ .left .menuSection{ float:left; background-color: transparent; }
+ .left.block_design .menuSection{padding-top:0; margin-top: 0;}
+ .left #side h1{ text-align:left;}
+ .left.block_design #side h1{padding-bottom:10px;}
+ .left .menuSection ul, .left #sign{ background-color: #FAFCFD; display:none; position:absolute; z-index:50; margin-top:0px; padding:7px!important; }
+ .left .menuSection:hover ul, .left .menuSection.iehover ul, .left #login_form:hover #sign, .left #login_form.iehover #sign{ display:block; }
+ .left .menuSection ul li{ white-space:nowrap; }
+ .left #YaSearch{width:200px; position:absolute; right: 0; top: 23px;}
+ .left.block_design #YaSearch{top: 45px;}
+ .left .menuSection ul b{ font-weight:normal; }
+ .left #lastComments ul{ width:250px; }
+ .left #lastComments ul li{ width: auto; }
+ .left #thisDiaryPhoto{ display:none; position:absolute; padding:10px; margin-top:25px; right:0;}
+ .left #thisDiaryInfo:hover #thisDiaryPhoto, .left #thisDiaryInfo.iehover #thisDiaryPhoto{ display:block; }
+ .left #authorName{ font-size: 130%; padding: 5px; font-weight:bold; display:block; white-space:nowrap; float:right; text-align:right;}
+ .left #thisDiaryInfo{ width:120px; position: absolute; right:0; top:0; text-align:right; margin: 0; z-index:50; }
+ .left #pchs ul{width: 250px;}
+ .left #pchs ul li{white-space: normal;}
+ .left.block_design #thisDiaryInfo{top:10px;}
+ .left #sign{width: 200px;}
+ #YaSearch, #Stats { display: none; }
+ #wrapper div.bordered.menu_block { margin-top: 90px; }
+ }
+ @media only screen and (max-width: 768px) { body { font-size: 3vw; padding: 0 !important; }
+ div#add_block1 { margin-left: 0; background-size: cover; }
+ #side { margin: 0px; }
+ }

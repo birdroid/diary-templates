@@ -1,44 +1,45 @@
 @font-face {
-  font-family: 'Lobster';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/c28rH3kclCLEuIsGhOg7evY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    font-family: 'Lobster';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/c28rH3kclCLEuIsGhOg7evY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 /* latin-ext */
 @font-face {
-  font-family: 'Lobster';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/9NqNYV_LP7zlAF8jHr7f1vY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+    font-family: 'Lobster';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/9NqNYV_LP7zlAF8jHr7f1vY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
 /* latin */
 @font-face {
-  font-family: 'Lobster';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/cycBf3mfbGkh66G5NhszPQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+    font-family: 'Lobster';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/cycBf3mfbGkh66G5NhszPQ.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 /* cyrillic */
 @font-face {
-  font-family: 'Philosopher';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Philosopher'), url(https://fonts.gstatic.com/s/philosopher/v7/OttjxgcoEsufOGSINYBGLTUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    font-family: 'Philosopher';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Philosopher'), url(https://fonts.gstatic.com/s/philosopher/v7/OttjxgcoEsufOGSINYBGLTUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 /* latin */
 @font-face {
-  font-family: 'Philosopher';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Philosopher'), url(https://fonts.gstatic.com/s/philosopher/v7/OttjxgcoEsufOGSINYBGLY4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+    font-family: 'Philosopher';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Philosopher'), url(https://fonts.gstatic.com/s/philosopher/v7/OttjxgcoEsufOGSINYBGLY4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 body {
@@ -47,63 +48,12 @@ body {
     /*background-repeat: no-repeat;*/
     background-repeat-y: no-repeat;
     background-attachment: fixed;
+    padding-top: 30px;
     font-size: 14px;
     color: #a83baf;
     /*font-family: 'Lobster', cursive;*/
     font-family: 'Philosopher', sans-serif;
     font-size: 16px;
-}
-
-#page-t {
-	background-color: rgba(255,255,255,0.8);
-	box-sizing: border-box;
-	padding: 25px;
-}
-
-#wrapper {
-	min-width: auto;
-}
-
-#side {
-	box-sizing: border-box;
-	padding-bottom: 20px;
-	transition: padding-bottom 0.5s;
-	padding-left: 20px;
-	padding-right: 20px;
-	position: fixed;
-	background-color: rgba(255,255,255,1);
-	background-image: url(../bg-3.png);
-	background-repeat: no-repeat;
-	background-position: bottom center;
-	background-size: contain;
-	background-origin:content-box;
-}
-
-#side:hover {
-	padding-bottom: 175px;
-}
-
-.count_box {
-	  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 0px;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #777;
-  border-radius: 10px;
-}
-
-.count_box a {
-	font-size: 14px;
-}
-
-.count_box:empty {
-  display: none;
 }
 
 a, .linkssection .postLinks a {
@@ -114,44 +64,133 @@ a, .linkssection .postLinks a {
 }
 
 a:hover, .linkssection .postLinks a:hover {
-	color: #af79c4;
-	text-shadow: 0px 0px 5px #302ebd;
+    color: #af79c4;
+    text-shadow: 0px 0px 5px #302ebd;
 }
 
-.header, h1, .postDate, .countSecond .postDate {
-	font-family: 'Lobster', cursive;
-	color: #394365;
+.block_design #side h1 a, .header, h1, .postDate, .countSecond .postDate {
+    font-family: 'Lobster', cursive;
+    color: #394365;
 }
 
-.header *, .postDate * {
-	font-size: 1.4em;
+#wrapper {
+    min-width: auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-img, iframe {
-	max-width: 100%;
+#page-t {
+    background-color: rgba(255,255,255,0.8);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 25px;
+}
+
+#side {
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding-bottom: 20px;
+    /*     transition: padding-bottom 0.5s; */
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    background-color: rgba(255,255,255,1);
+    background-image: url(../bg-3.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    /* background-origin:content-box; */
+}
+
+/* #side:hover {
+    padding-bottom: 150px;
+} */
+#side ul {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+#side ul li {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    border: 1px solid #d6d6dd;
+    background-color: rgba(255,255,255,0.5)
+}
+
+#myDiaryLink, #mainpageLink {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+#referenceLink, #myCommunitiesLink {
+    margin-bottom: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 #side ul li, #YaSearch {
-	display: none;
+    display: none;
 }
 
 #myDiaryLink, #writeThisDiary, #umailLink, #discussionLink, #myFavLink, #mySFavLink, #mainpageLink, #myCommunitiesLink, #referenceLink {
-	display: list-item !important;
+    display: list-item !important;
 }
 
-.block_design .menuSection{
-	padding: 0;
-	margin: 0;
+.block_design .menuSection {
+    padding: 0;
+    margin: 0;
 }
 
 div#myDiaryLinks.menuSection, .lastSection {
-	margin-top: 20px !important;
+    margin-top: 20px !important;
 }
 
 #side b {
-	font-weight: normal;
+    font-weight: normal;
 }
 
 #w18p {
-	display: none;
+    display: none;
+}
+
+.count_box {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 0px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #4e5a8a;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.count_box:empty {
+    display: none;
+}
+
+.count_box a {
+    font-size: 14px;
+    color: #fff;
+    transition: none !important;
+}
+
+.header *, .postDate * {
+    font-size: 1.4em;
+}
+
+#thisDiaryPhoto img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50px;
+}
+
+img, iframe {
+    max-width: 100%;
 }
