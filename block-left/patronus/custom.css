@@ -43,11 +43,11 @@
 }
 
 body {
-    /*	width: 800px;*/
+    /*  width: 800px;*/
     background-image: url(../bg-2.jpg);
-    /*background-repeat: no-repeat;*/
+    /* background-repeat: no-repeat; */
     background-repeat-y: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     padding-top: 30px;
     font-size: 14px;
     color: #a83baf;
@@ -80,10 +80,10 @@ a:hover, .linkssection .postLinks a:hover {
 }
 
 #page-t {
-    background-color: rgba(255,255,255,0.8);
+    /* background-color: rgba(255,255,255,0.8); */
     box-sizing: border-box;
-    border-radius: 4px;
-    padding: 25px;
+    /* border-radius: 4px; */
+    /* padding: 25px; */
 }
 
 #side {
@@ -189,6 +189,17 @@ div#myDiaryLinks.menuSection, .lastSection {
     max-width: 100px;
     max-height: 100px;
     border-radius: 50px;
+}
+
+.bordered#postsArea {
+    padding: 0;
+}
+
+.block_design .singlePost, .block_design .singleComment {
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 25px;
 }
 
 img, iframe {
