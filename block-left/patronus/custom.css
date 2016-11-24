@@ -48,6 +48,7 @@ body {
     /* background-repeat: no-repeat; */
     background-repeat-y: no-repeat;
     background-attachment: scroll;
+    background-position-x: center;
     padding-top: 30px;
     font-size: 14px;
     color: #a83baf;
@@ -199,7 +200,8 @@ div#myDiaryLinks.menuSection, .lastSection {
     box-sizing: border-box;
     border-radius: 4px;
     background-color: rgba(255,255,255,0.8);
-    padding: 25px;
+    padding: 30px;
+    margin-bottom: 25px;
 }
 
 img, iframe {
