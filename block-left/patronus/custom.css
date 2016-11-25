@@ -1,49 +1,3 @@
-/*@font-face {
-    font-family: 'Lobster';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/c28rH3kclCLEuIsGhOg7evY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
-    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}*/
-
-/* latin-ext */
-/*@font-face {
-    font-family: 'Lobster';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/9NqNYV_LP7zlAF8jHr7f1vY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
-    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-*/
-/* latin */
-/*@font-face {
-    font-family: 'Lobster';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Lobster'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v18/cycBf3mfbGkh66G5NhszPQ.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}*/
-
-/* cyrillic */
-/*@font-face {
-    font-family: 'Philosopher';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Philosopher'), url(https://fonts.gstatic.com/s/philosopher/v7/OttjxgcoEsufOGSINYBGLTUj_cnvWIuuBMVgbX098Mw.woff2) format('woff2');
-    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}*/
-
-/* latin */
-/*@font-face {
-    font-family: 'Philosopher';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Philosopher'), url(https://fonts.gstatic.com/s/philosopher/v7/OttjxgcoEsufOGSINYBGLY4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}*/
-
-/*----------------------------------------------------------------------*/
-
 /* cyrillic-ext */
 @font-face {
   font-family: 'Open Sans';
@@ -128,17 +82,13 @@
 /*---------------------------*/
 
 body {
-    /*  width: 800px;*/
     background-image: url(../bg-2.jpg);
-    /* background-repeat: no-repeat; */
     background-repeat-y: no-repeat;
     background-attachment: scroll;
     background-position-x: center;
     padding-top: 30px;
     font-size: 14px;
     color: #a83baf;
-    /*font-family: 'Lobster', cursive;*/
-    /*font-family: 'Philosopher', sans-serif;*/
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
 }
@@ -156,7 +106,6 @@ a:hover, .linkssection .postLinks a:hover {
 }
 
 .block_design #side h1 a, .header, h1, .postDate, .countSecond .postDate {
-    /*font-family: 'Lobster', cursive;*/
     font-family: 'Poiret One', cursive;
     color: #394365;
 }
@@ -172,17 +121,13 @@ a:hover, .linkssection .postLinks a:hover {
 }
 
 #page-t {
-    /* background-color: rgba(255,255,255,0.8); */
     box-sizing: border-box;
-    /* border-radius: 4px; */
-    /* padding: 25px; */
 }
 
 #side {
     box-sizing: border-box;
     border-radius: 4px;
     padding-bottom: 20px;
-    /*     transition: padding-bottom 0.5s; */
     padding-left: 20px;
     padding-right: 20px;
     position: fixed;
@@ -191,12 +136,8 @@ a:hover, .linkssection .postLinks a:hover {
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: contain;
-    /* background-origin:content-box; */
 }
 
-/* #side:hover {
-    padding-bottom: 150px;
-} */
 #side ul {
     margin-bottom: 20px;
     padding-left: 0;
@@ -289,6 +230,8 @@ div#myDiaryLinks.menuSection, .lastSection {
     background-color: rgba(255,255,255,0.8);
     padding: 30px;
     margin-bottom: 25px;
+    
+    border: 1px solid #d6d6dd;
 }
 
 img, iframe {
