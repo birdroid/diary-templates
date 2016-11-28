@@ -82,15 +82,34 @@
 /*---------------------------*/
 
 body {
-    background-image: url(../bg-2.jpg);
+    /* background-image: url(../bg-2.jpg); */
     background-repeat-y: no-repeat;
     background-attachment: scroll;
     background-position-x: center;
     padding-top: 30px;
+    /* padding: 0; */
     font-size: 14px;
     color: #a83baf;
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
+}
+
+.postLinksBackg {
+    padding: 10px 30px !important;
+    /* color: #fff; */
+}
+
+.postLinksBackg a {
+    color: #fff;
+}
+
+.postContent {
+    /* position: static; */
+    background-color: rgba(255,255,255,1) !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 30px;
+    padding-top: 10px;
 }
 
 a, .linkssection .postLinks a {
@@ -107,7 +126,13 @@ a:hover, .linkssection .postLinks a:hover {
 
 .block_design #side h1 a, .header, h1, .postDate, .countSecond .postDate {
     font-family: 'Poiret One', cursive;
-    color: #394365;
+    color: #352f5a;
+    /* position: static; */
+}
+
+.countSecondDate.postDate.uline {
+    color: #fff;
+    padding: 0 30px;
 }
 
 .block_design #side h1 a, .header *, .postDate * {
@@ -122,20 +147,34 @@ a:hover, .linkssection .postLinks a:hover {
 
 #page-t {
     box-sizing: border-box;
+    /* margin-left: 0px !important; */
+}
+
+div#page-c {
+    /* margin-left: 33% !important; */
+    /* position: absolute; */
 }
 
 #side {
     box-sizing: border-box;
+    min-width: 242px;
+    /* width: 33% !important; */
+    height: 100%;
+    /* margin: 0 !important; */
     border-radius: 4px;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    top: 0;
+    left: 0;
+    z-index: -1;
     position: fixed;
     background-color: rgba(255,255,255,1);
     background-image: url(../bg-3.png);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: contain;
+    box-shadow: 1px 1px 10px #cccbcb;
 }
 
 #side ul {
@@ -227,13 +266,42 @@ div#myDiaryLinks.menuSection, .lastSection {
 .block_design .singlePost, .block_design .singleComment {
     box-sizing: border-box;
     border-radius: 4px;
-    background-color: rgba(255,255,255,0.8);
-    padding: 30px;
+    /* background-color: rgba(255,255,255,0.8); */
+    background-image: url(../bg-2.jpg);
+    /* padding: 30px; */
     margin-bottom: 25px;
-    
     border: 1px solid #d6d6dd;
+    box-shadow: 1px 1px 10px #cccbcb;
+    /* position: relative; */
+    /* position: static; */
+    padding: 0;
+    padding-top: 10px;
+}
+
+#epigraph {
+  box-shadow: none;
+  background-image: none;
 }
 
 img, iframe {
     max-width: 100%;
+}
+
+.postTitle.header {
+  /* position: relative; */
+  box-sizing: border-box;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  top: 0;
+  right: 0;
+  padding: 0 30px;
+  width: 100%;
+  /* background-image: url(../bg-2.jpg); */
+  color: #fff;
+  /* margin: 10px 0; */
+}
+
+.postDate {
+  /* position: absolute; */
+  /* top: -35px; */
 }
