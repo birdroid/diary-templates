@@ -83,7 +83,8 @@
 
 body {
     /* background-image: url(../bg-2.jpg); */
-    background-repeat-y: no-repeat;
+    background-image: url(../000000-6.png);
+    /*background-repeat-y: no-repeat;*/
     background-attachment: scroll;
     background-position-x: center;
     padding-top: 30px;
@@ -267,7 +268,7 @@ div#myDiaryLinks.menuSection, .lastSection {
     box-sizing: border-box;
     border-radius: 4px;
     /* background-color: rgba(255,255,255,0.8); */
-    background-image: url(../bg-2.jpg);
+    background-image: url(../000000-dl.png);
     /* padding: 30px; */
     margin-bottom: 25px;
     border: 1px solid #d6d6dd;
