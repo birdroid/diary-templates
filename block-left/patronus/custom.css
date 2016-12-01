@@ -294,6 +294,7 @@ div#myDiaryLinks.menuSection, .lastSection {
 .header.hdr.left {
     background-color: rgb(239, 239, 238);
     background-image: url(../000000-dl-2.png);
+    /*idk*/
     color: #fff;
     box-sizing: border-box;
     padding: 10px 30px;
