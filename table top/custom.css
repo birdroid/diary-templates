@@ -1,7 +1,70 @@
+/*:root {
+	--bg-color: #000;
+};*/
+
 body {
 	box-sizing: border-box;
 	color: black;
-	background-color: #eee;
+	font-family: Arial, sans-serif;
+	font-size: 14px !important;
+	--bg-color: #f5f8fa!important;
+	background-color: var(--bg-color);
+	/*font: var(--f);*/
+}
+
+.top #side .bordered, .top #page-c #page-t, #thisDiaryInfo, #YaSearch {
+	margin-right: 0 !important;
+}
+
+.top .bordered {
+	margin-left: 300px;
+	width: 590px;
+	background: #fff;
+    border-left: 1px solid #e6ecf0;
+    border-right: 1px solid #e6ecf0;
+    border-radius: 6px;
+    background-clip: padding-box;
+
+}
+
+.singlePost, .singleComment {
+	background-image: url('https://pbs.twimg.com/profile_images/646240690641354752/StMPCOHB_bigger.png');
+	background-repeat: no-repeat;
+	background-size: 48px;
+	background-position: 12px 12px;
+	border-bottom: 1px solid #e6ecf0;
+	padding: 9px 12px
+}
+
+.singlePost:hover, .singleComment:hover {
+	background-color: #f5f8fa
+}
+
+.postDate, .countSecond .postDate {
+    color: #657786;
+}
+
+.postTitle.header {	
+	margin-left: 58px;
+}
+
+.postTitle.header, .postTitle.header h2 {
+	color: #14171a;
+    font-size: 14px;
+    font-weight: bold
+}
+
+.postDate:hover {
+	color: #BFABA0;
+	text-decoration: underline;
+}
+
+.postContent {
+	margin-left: 58px;
+}
+
+.paragraph {	
+	line-height: 20px;
 }
 
 #side {
@@ -9,5 +72,9 @@ body {
 }
 
 a {
-	color: red;
+	color: #1b95e0;
+}
+
+img, iframe {
+	max-width: 100%
 }
