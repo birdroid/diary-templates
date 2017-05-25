@@ -9,11 +9,36 @@ body {
 	font-size: 14px !important;
 	--bg-color: #f5f8fa!important;
 	background-color: var(--bg-color);
+	padding: 0;
 	/*font: var(--f);*/
 }
 
 .top #side .bordered, .top #page-c #page-t, #thisDiaryInfo, #YaSearch {
 	margin-right: 0 !important;
+}
+
+.top #side .bordered {
+	background-color: #fff;
+	border-radius: 0;
+	border: 0px !important;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	box-sizing: border-box;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+	margin: 0;
+	height: 46px;
+	z-index: 1;
+}
+
+.top #side .bordered iframe {
+	display: none;
+}
+
+.top #page-c {
+	position: relative;
+	top: 53px;
+	float: none;
 }
 
 .top .bordered {
@@ -34,6 +59,11 @@ body {
 	background-position: 12px 12px;
 	border-bottom: 1px solid #e6ecf0;
 	padding: 9px 12px
+}
+
+#epigraph.singlePost {
+	background-image: none;
+	padding: 0;
 }
 
 .singlePost:hover, .singleComment:hover {
@@ -67,9 +97,33 @@ body {
 	line-height: 20px;
 }
 
-#side {
-	background-color: #fff;
+.postLinks li {
+	background-color: #2b2b2b;
+	padding: 6px 10px;
+	border-radius: 4px;
+	font-size: 11px;
 }
+
+.postLinks li a {
+	color: #fff;	
+}
+
+.atMusic, .atMood, .atTag {
+	color: #657786;
+}
+
+.atTag a {
+	text-decoration: none;
+}
+
+.atTag a:hover {
+	text-decoration: underline;
+}
+
+.atTag a:before {
+	content: "#"
+}
+
 
 a {
 	color: #1b95e0;
