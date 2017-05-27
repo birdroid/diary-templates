@@ -3,11 +3,15 @@
 };*/
 
 body {
+	--bg-color: #f5f8fa;
+	--blue: #1b95e0;
+	--tbg-color: #fff;
+	--tbg-color-h: #f5f8fa;
+	--faded-font: #657786;
 	box-sizing: border-box;
 	color: black;
 	font-family: Arial, sans-serif;
 	font-size: 14px !important;
-	--bg-color: #f5f8fa!important;
 	background-color: var(--bg-color);
 	padding: 0;
 	/*font: var(--f);*/
@@ -18,7 +22,7 @@ body {
 }
 
 .top #side .bordered {
-	background-color: #fff;
+	background-color: var(--tbg-color);
 	border-radius: 0;
 	border: 0px !important;
 	position: fixed;
@@ -44,7 +48,7 @@ body {
 .top .bordered {
 	margin-left: 300px;
 	width: 590px;
-	background: #fff;
+	background: var(--tbg-color);
     border-left: 1px solid #e6ecf0;
     border-right: 1px solid #e6ecf0;
     border-radius: 6px;
@@ -67,11 +71,11 @@ body {
 }
 
 .singlePost:hover, .singleComment:hover {
-	background-color: #f5f8fa
+	background-color: var(--tbg-color-h)
 }
 
 .postDate, .countSecond .postDate {
-    color: #657786;
+    color: var(--faded-font);
 }
 
 .postTitle.header {	
@@ -93,8 +97,52 @@ body {
 	margin-left: 58px;
 }
 
+.singlePost .authorName {
+	position: absolute;
+	margin-left: 54px;
+	top: 10px;
+}
+
+.singlePost .authorName a {
+	color: inherit;
+}
+
+.singlePost .authorName a:hover {
+	color: var(--blue);
+}
+
+#JournalComments .singlePost, #JournalComments .singleComment {
+	background-image: none;
+}
+
+#JournalComments .postTitle.header {
+	margin-left: 54px
+}
+
+#JournalComments .postContent {
+	margin: 0;
+}
+
+.singleComment {
+	position: relative;
+}
+
+#JournalComments .commentAuthor {
+	margin: 0;
+	max-width: 48px;
+	max-height: 48px;
+	position: absolute;
+	top: 12px;
+}
+
+#JournalComments .commentAuthor div {
+	max-width: 48px;
+	max-height: 48px;	
+}
+
 .paragraph {	
 	line-height: 20px;
+	margin-left: 58px;
 }
 
 .postLinks li {
@@ -109,7 +157,7 @@ body {
 }
 
 .atMusic, .atMood, .atTag {
-	color: #657786;
+	color: var(--faded-font);
 }
 
 .atTag a {
@@ -126,7 +174,7 @@ body {
 
 
 a {
-	color: #1b95e0;
+	color: var(--blue);
 }
 
 img, iframe {
