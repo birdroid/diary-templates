@@ -80,6 +80,7 @@ body {
 
 .postTitle.header {	
 	margin-left: 58px;
+
 }
 
 .postTitle.header, .postTitle.header h2 {
@@ -89,7 +90,7 @@ body {
 }
 
 .postDate:hover {
-	color: #BFABA0;
+	color: var(--blue);
 	text-decoration: underline;
 }
 
@@ -116,7 +117,22 @@ body {
 }
 
 #JournalComments .postTitle.header {
-	margin-left: 54px
+	/*margin-left: 54px;*/
+	float: right;
+	color: var(--faded-font);
+	font-weight: normal;
+}
+
+#JournalComments .authorName {
+	margin-left: 58px;
+}
+
+#JournalComments .authorName a {
+	color: inherit;
+}
+
+#JournalComments .authorName a:hover {
+	color: var(--blue);
 }
 
 #JournalComments .postContent {
